@@ -60,7 +60,7 @@ lcoal__start = CFAbsoluteTimeGetCurrent()
     MLNUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId forIndexPath:indexPath];
     cell.delegate = self;
     TOCK("befor init %zd",indexPath.row);
-    [cell pushContentViewWithLuaCore:self.mlnui_luaCore];
+    [cell pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
     if (!cell.isInited) {
         [initCallback addLuaTableArgument:[cell getLuaTable]];
         [initCallback callIfCan];
@@ -113,7 +113,7 @@ lcoal__start = CFAbsoluteTimeGetCurrent()
     NSString *reuseId = [self reuseIdAt:indexPath];
     MLNUITableViewCell *cell = [self tableView:tableView dequeueCalculCellForIdentifier:reuseId];
     [self updateCellWidthIfNeed:cell tableViewWidth:tableViewWidth];
-    [cell pushContentViewWithLuaCore:self.mlnui_luaCore];
+    [cell pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
     if (!cell.isInited) {
         MLNUIBlock *initCallback = [self initedCellCallbackByReuseId:reuseId];
         MLNUIKitLuaAssert(initCallback, @"It must not be nil callback of cell init!");

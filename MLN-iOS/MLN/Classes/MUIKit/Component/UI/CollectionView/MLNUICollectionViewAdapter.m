@@ -58,13 +58,17 @@ static NSValue *kSizeValueZero = nil;
     
     NSMutableDictionary* classDict = [self collectionViewRegisterCellClassDict:collectionView];
     if (reuseId && reuseId.length > 0 && ![classDict valueForKey:reuseId]) {
-        [collectionView registerClass:[MLNUICollectionViewCell class] forCellWithReuseIdentifier:reuseId];
+        [collectionView registerClass:[self cellClass] forCellWithReuseIdentifier:reuseId];
         //[self.cellReuseIds addObject:reuseId];
     }
 }
 
 - (NSMutableDictionary *)collectionViewRegisterCellClassDict:(UICollectionView*)collectionView {
     return [collectionView valueForKey:@"_cellClassDict"];
+}
+
+- (Class)cellClass {
+    return [MLNUICollectionViewCell class];
 }
 
 #pragma mark - MLNUICollectionViewAdapterProtocol
@@ -238,7 +242,7 @@ static NSValue *kSizeValueZero = nil;
     [self registerCellClassIfNeed:collectionView reuseId:reuseId];
     MLNUICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseId forIndexPath:indexPath];
     cell.delegate = self;
-    [cell pushContentViewWithLuaCore:self.mlnui_luaCore];
+    [cell pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
     if (!cell.isInited) {
         MLNUIBlock *initCallback = [self initedCellCallbackByReuseId:reuseId];
         MLNUIKitLuaAssert(initCallback, @"It must not be nil callback of cell init!");
@@ -252,7 +256,7 @@ static NSValue *kSizeValueZero = nil;
     [reuseCallback addIntArgument:(int)indexPath.section+1];
     [reuseCallback addIntArgument:(int)indexPath.item+1];
     [reuseCallback callIfCan];
-    [cell mlnui_requestLayoutIfNeed];
+//    [cell mlnui_requestLayoutIfNeed];
     return cell;
 }
 

@@ -32,14 +32,14 @@
 }
 
 #pragma mark - MLNUIReuseCellProtocol
-- (void)pushContentViewWithLuaCore:(MLNUILuaCore *)luaCore
+- (void)pushContentViewWithLuaCore:(MLNUILuaCore *)luaCore forNodeKey:(nonnull id)key
 {
-    [self.luaContentView pushToLuaCore:luaCore];
+    [self.luaContentView pushToLuaCore:luaCore forNodeKey:key];
 }
 
-- (void)setupLayoutNodeIfNeed
+- (void)setupLayoutNodeIfNeedWithNodeKey:(id)key
 {
-    [self.luaContentView setupLayoutNodeIfNeed];
+    [self.luaContentView setupLayoutNodeIfNeedWithNodeKey:key];
 }
 
 - (void)updateLuaContentViewIfNeed

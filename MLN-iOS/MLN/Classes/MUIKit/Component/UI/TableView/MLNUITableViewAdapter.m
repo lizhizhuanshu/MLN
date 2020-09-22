@@ -217,7 +217,7 @@
     
 //    NSLog(@">>>>>> cell %p row %zd",cell,indexPath.row);
     
-    [cell pushContentViewWithLuaCore:self.mlnui_luaCore];
+    [cell pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
     if (!cell.isInited) {
         [initCallback addLuaTableArgument:[cell getLuaTable]];
         [initCallback callIfCan];

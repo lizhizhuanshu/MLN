@@ -18,6 +18,7 @@
     MLNUISizeCahceManager *_sizeCacheManager;
 }
 @property (nonatomic, strong) NSMutableArray<MLNUILayoutNode *> *rootNodesPool;
+@property (nonatomic, strong) NSMutableDictionary<id, MLNUILayoutNode *> *mutexRootNodesPool;
 @property (nonatomic, strong) MLNUIMainRunLoopObserver *mainLoopObserver;
 
 @end
@@ -52,9 +53,28 @@
     }
 }
 
+- (void)addRootNode:(MLNUILayoutNode *)rootNode forKey:(id)key {
+    if (!rootNode || !key) return;
+    MLNUILayoutNode *needRemoveNode = [self.mutexRootNodesPool objectForKey:key];
+    if (needRemoveNode) {
+        [self.rootNodesPool removeObject:needRemoveNode];
+    }
+    [self.mutexRootNodesPool setObject:rootNode forKey:key];
+    [self.rootNodesPool addObject:rootNode];
+}
+
 - (void)removeRootNode:(MLNUILayoutNode *)rootnode {
     if (rootnode.isRootNode && [self.rootNodesPool containsObject:rootnode]) {
         [self.rootNodesPool removeObject:rootnode];
+    }
+}
+
+- (void)removeRootNodeForKey:(id)key {
+    if (!key) return;
+    MLNUILayoutNode *needRemoveNode = [self.mutexRootNodesPool objectForKey:key];
+    if (needRemoveNode) {
+        [self.rootNodesPool removeObject:needRemoveNode];
+        [self.mutexRootNodesPool removeObjectForKey:key];
     }
 }
 
@@ -74,6 +94,13 @@
         _rootNodesPool = [NSMutableArray array];
     }
     return _rootNodesPool;
+}
+
+- (NSMutableDictionary<id,MLNUILayoutNode *> *)mutexRootNodesPool {
+    if (!_mutexRootNodesPool) {
+        _mutexRootNodesPool = [NSMutableDictionary dictionary];
+    }
+    return _mutexRootNodesPool;
 }
 
 - (MLNUISizeCahceManager *)sizeCacheManager

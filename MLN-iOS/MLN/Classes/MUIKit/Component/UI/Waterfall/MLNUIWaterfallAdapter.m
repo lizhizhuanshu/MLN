@@ -80,7 +80,7 @@
     if (!headerView) {
         [collectionView registerClass:[MLNUIWaterfallHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMLNUIWaterfallHeaderViewReuseID];
         MLNUIWaterfallHeaderView *waterfallHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kMLNUIWaterfallHeaderViewReuseID forIndexPath:indexPath];
-        [waterfallHeaderView pushContentViewWithLuaCore:self.mlnui_luaCore];
+        [waterfallHeaderView pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
         
         BOOL isHeaderValid = [self _mlnui_in_headerIsValid];
         if (indexPath.section != 0 || !isHeaderValid) {
@@ -106,9 +106,9 @@
         static NSString *reuseId = kMLNUIWaterfallViewReuseID;
         [collectionView registerClass:[MLNUICollectionViewCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseId];
         MLNUICollectionViewCell *headerContentView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseId forIndexPath:indexPath];
-        [headerContentView pushContentViewWithLuaCore:self.mlnui_luaCore];
+        [headerContentView pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
         if ([collectionView isKindOfClass:[MLNUIInternalWaterfallView class]]) {
-            [headerContentView setupLayoutNodeIfNeed];
+            [headerContentView setupLayoutNodeIfNeedWithNodeKey:indexPath];
             [headerContentView luaui_addSubview:headerView];
             [headerView mlnui_markNeedsLayout];
             [headerContentView mlnui_requestLayoutIfNeed];

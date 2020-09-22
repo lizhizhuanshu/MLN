@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MLNUIReuseCellProtocol <NSObject>
 
 @required
-- (void)pushContentViewWithLuaCore:(MLNUILuaCore *)luaCore;
-- (void)setupLayoutNodeIfNeed;
+- (void)pushContentViewWithLuaCore:(MLNUILuaCore *)luaCore forNodeKey:(id)key;
+- (void)setupLayoutNodeIfNeedWithNodeKey:(id)key;
 - (void)updateLuaContentViewIfNeed;
 - (MLNUILuaTable *)getLuaTable;
 
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-typedef void(^MLNUIReuseContentViewDidChangeLayout)(void);
+typedef void(^MLNUIReuseContentViewDidChangeLayout)(CGSize size);
 
 @interface MLNUIReuseContentView : MLNUIVStack
 
@@ -46,9 +46,17 @@ typedef void(^MLNUIReuseContentViewDidChangeLayout)(void);
 - (CGSize)calculSizeWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight;
 - (CGFloat)calculHeightWithWidth:(CGFloat)width maxHeight:(CGFloat)maxHeight applySize:(BOOL)applySize;
 
-- (void)pushToLuaCore:(MLNUILuaCore *)luaCore;
-- (void)setupLayoutNodeIfNeed;
+- (void)pushToLuaCore:(MLNUILuaCore *)luaCore forNodeKey:(id)key;
+- (void)setupLayoutNodeIfNeedWithNodeKey:(id)key;
 - (void)updateFrameIfNeed;
+
+@end
+
+@interface MLNUIReuseAutoSizeContentViewNode : MLNUILayoutNode
+
+@end
+
+@interface MLNUIReuseAutoSizeContentView : MLNUIReuseContentView
 
 @end
 

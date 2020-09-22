@@ -541,9 +541,17 @@
     [self.layoutEngine addRootnode:rootnode];
 }
 
+- (void)addRootNode:(MLNUILayoutNode *)rootNode forKey:(id)key {
+    [self.layoutEngine addRootNode:rootNode forKey:key];
+}
+
 - (void)removeRootNode:(MLNUILayoutNode *)rootnode
 {
     [self.layoutEngine removeRootNode:rootnode];
+}
+
+- (void)removeRootNodeForKey:(id)key {
+    [self.layoutEngine removeRootNodeForKey:key];
 }
 
 - (void)requestLayout

@@ -28,43 +28,51 @@
             return size;
         }
     }
+    
     // 2. calculate size
     NSString *reuseId = [self reuseIdentifierAtIndexPath:indexPath];
     [self registerCellClassIfNeed:collectionView reuseId:reuseId];
-    MLNUICollectionViewCell *cell = [[MLNUICollectionViewCell alloc] init];
+    
+    MLNUICollectionViewAutoSizeCell *cell = [[MLNUICollectionViewAutoSizeCell alloc] init];
     cell.delegate = self;
-    [cell pushContentViewWithLuaCore:self.mlnui_luaCore];
-    if (!cell.isInited) {
-        MLNUIBlock *initCallback = [self initedCellCallbackByReuseId:reuseId];
-        [initCallback addLuaTableArgument:[cell getLuaTable]];
-        [initCallback callIfCan];
-        [cell initCompleted];
-    }
+    [cell pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
+    
+    MLNUIBlock *initCallback = [self initedCellCallbackByReuseId:reuseId];
+    [initCallback addLuaTableArgument:[cell getLuaTable]];
+    [initCallback callIfCan];
+    
     MLNUIBlock *reuseCallback = [self fillCellDataCallbackByReuseId:reuseId];
     [reuseCallback addLuaTableArgument:[cell getLuaTable]];
     [reuseCallback addIntArgument:(int)indexPath.section+1];
     [reuseCallback addIntArgument:(int)indexPath.item+1];
     [reuseCallback callIfCan];
+    
     CGSize size = [cell calculSizeWithMaxWidth:MLNUIUndefined maxHeight:MLNUIUndefined]; // 计算cell自适应大小
-    // 3. update cache
-    [self.cachesManager updateLayoutInfo:[NSValue valueWithCGSize:size] forIndexPath:indexPath];
+    [self.cachesManager updateLayoutInfo:[NSValue valueWithCGSize:size] forIndexPath:indexPath];  // update cache
     return size;
+}
+
+#pragma mark - Override
+
+- (Class)cellClass {
+    return [MLNUICollectionViewAutoSizeCell class];
 }
 
 #pragma mark - MLNUICollectionViewCellDelegate
 
-- (void)mlnuiCollectionViewCellShouldReload:(MLNUICollectionViewCell *)cell {
-    if (CGPointEqualToPoint(self.collectionView.contentOffset, CGPointZero)) { // 主要处理首次加载页面cell显示不正确的问题
-        SEL selector = @selector(reloadCellInIdleStatus);
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];
-        [self performSelector:selector withObject:nil afterDelay:0.2]; // default runloop mode
-    }
-}
+- (void)mlnuiCollectionViewCellShouldReload:(MLNUICollectionViewCell *)cell size:(CGSize)size {
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    if (!indexPath) return;
+    
+    // 直接更新缓存中的 cell 大小，这样，
+    // - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+    // 方法中可以直接命中缓存，否则需要再进行一次计算
+    [self.cachesManager updateLayoutInfo:@(size) forIndexPath:indexPath];
 
-- (void)reloadCellInIdleStatus {
-    [self.cachesManager invalidateAllCaches];
-    [self.collectionView.collectionViewLayout invalidateLayout];
-    [self.collectionView reloadData];
+    // cell 上内容变更引起重新测量布局后，需要重新调整 cell 大小. (即 invalidate collectionViewLayout)
+    UICollectionViewLayoutInvalidationContext *invalidContext = [UICollectionViewLayoutInvalidationContext new];
+    [invalidContext invalidateItemsAtIndexPaths:@[indexPath]];
+    [self.collectionView.collectionViewLayout invalidateLayoutWithContext:invalidContext];
 }
 
 LUAUI_EXPORT_BEGIN(MLNUICollectionViewAutoFitAdapter)

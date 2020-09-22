@@ -88,7 +88,7 @@
     NSString *reuseId = [self reuseIdAt:indexPath];
     [self registerCellClassIfNeed:collectionView reuseId:reuseId];
     MLNUICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseId forIndexPath:indexPath];
-    [cell pushContentViewWithLuaCore:self.mlnui_luaCore];
+    [cell pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
     if (!cell.isInited) {
         MLNUIBlock *initCallback = [self.initedCellCallbacks objectForKey:reuseId];
         MLNUIKitLuaAssert(initCallback, @"It must not be nil callback of cell init!");

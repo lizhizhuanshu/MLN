@@ -310,11 +310,26 @@ Lua中的根视图。
 - (void)addRootnode:(MLNUILayoutNode *)rootnode;
 
 /**
+添加一个布局节点，以key作为标识，避免额外添加
+
+ @param rootNode 布局树的根节点
+ @param key rootNode 标识
+*/
+- (void)addRootNode:(MLNUILayoutNode *)rootNode forKey:(id)key;
+
+/**
  移除布局的根节点
 
  @param rootnode 自动布局的根节点
  */
 - (void)removeRootNode:(MLNUILayoutNode *)rootnode;
+
+/**
+ 移除一个布局树
+
+  @param key rootNode 标识
+ */
+- (void)removeRootNodeForKey:(id)key;
 
 /**
  同步请求布局，立即执行一次布局
