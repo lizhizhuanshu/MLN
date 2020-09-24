@@ -104,7 +104,7 @@
         return waterfallHeaderView;
     } else {
         static NSString *reuseId = kMLNUIWaterfallViewReuseID;
-        [collectionView registerClass:[MLNUICollectionViewCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseId];
+        [collectionView registerClass:[self cellClass] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseId];
         MLNUICollectionViewCell *headerContentView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseId forIndexPath:indexPath];
         [headerContentView pushContentViewWithLuaCore:self.mlnui_luaCore forNodeKey:indexPath];
         if ([collectionView isKindOfClass:[MLNUIInternalWaterfallView class]]) {
