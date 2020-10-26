@@ -16,24 +16,28 @@
 @implementation ArgoViewController (ArgoDataBinding)
 
 - (void)bindData:(NSObject<ArgoObservableObject> *)data {
-    [self.argo_dataBinding bindData:(NSObject<ArgoListenerProtocol> *)data];
+    [self.argo_dataBinding bindData:(id<ArgoListenerProtocol>)data];
 }
 
 - (void)bindData:(NSObject<ArgoObservableObject> *)data forKey:(NSString *)key {
-    [self.argo_dataBinding bindData:(NSObject<ArgoListenerProtocol> *)data forKey:key];
+    [self.argo_dataBinding bindData:(id<ArgoListenerProtocol>)data forKey:key];
 }
 
 - (ArgoDataBinding *)argo_dataBinding {
     if (!_dataBinding) {
-        ArgoDataBindingErrorLogBlock block;
+# if OCPERF_USE_NEW_DB
+        _dataBinding = [[ArgoDataBinding alloc] init];
+#else
+        _dataBinding = (ArgoDataBinding *)[[MLNUIDataBinding alloc] init];
+#endif
+        
 #if DEBUG
         @weakify(self);
-        block = ^(NSString * _Nonnull log) {
+        _dataBinding.errorLog = ^(NSString * _Nonnull log) {
             @strongify(self);
             MLNUIError(self.kitInstance.luaCore, @"%@",log);
         };
 #endif
-        _dataBinding = [self.class argo_createDataBindingWithErrorLogBlock:block];
     }
     return _dataBinding;
 }
@@ -45,17 +49,6 @@
 @end
 
 @implementation UIViewController (ArgoDataBinding)
-
-+ (ArgoDataBinding *_Nonnull)argo_createDataBindingWithErrorLogBlock:(ArgoDataBindingErrorLogBlock _Nullable )block {
-    ArgoDataBinding *db = [[ArgoDataBinding alloc] init];
-# if OCPERF_USE_NEW_DB
-    db = [[ArgoDataBinding alloc] init];
-#else
-    db = (ArgoDataBinding *)[[MLNUIDataBinding alloc] init];
-#endif
-    db.errorLog = block;
-    return db;
-}
 
 - (ArgoDataBinding *)argo_dataBinding {
     ArgoDataBinding *obj = objc_getAssociatedObject(self, _cmd);
@@ -78,13 +71,4 @@
         [self didMoveToParentViewController:superVC];
     }
 }
-
-- (void)argo_bindData:(NSObject<ArgoObservableObject> *)data {
-    [self.argo_dataBinding bindData:(NSObject<ArgoListenerProtocol> *)data];
-}
-
-- (void)argo_bindData:(NSObject<ArgoObservableObject> *)data forKey:(NSString *)key {
-    [self.argo_dataBinding bindData:(NSObject<ArgoListenerProtocol> *)data forKey:key];
-}
-
 @end

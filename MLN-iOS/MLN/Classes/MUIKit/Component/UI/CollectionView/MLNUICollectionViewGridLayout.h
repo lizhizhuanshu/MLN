@@ -11,10 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MLNUICollectionViewGridLayout : UICollectionViewFlowLayout<MLNUIEntityExportProtocol>
+@interface MLNUICollectionViewGridLayout : UICollectionViewLayout<MLNUIEntityExportProtocol>
 
 @property (nonatomic, assign) MLNUIScrollDirection scrollDirection;
-@property (nonatomic, assign, readonly) CGSize avaliableSizeForLayoutItem;
 
 @end
 

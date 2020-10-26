@@ -14,7 +14,6 @@
 #import "MLNUISizeCahceManager.h"
 #import "MLNUICollectionViewCell.h"
 #import "MLNUICollectionViewAdapter.h"
-#import "MLNUICollectionViewAutoFitAdapter.h"
 #import "MLNUIInnerCollectionView.h"
 #import "MLNUICollectionViewLayoutProtocol.h"
 #import "UIView+MLNUIKit.h"
@@ -40,16 +39,6 @@
     // 去除强引用
     MLNUI_Lua_UserData_Release(self.layout);
     [super mlnui_user_data_dealloc];
-}
-
-// cell自适应场景下要开启估算功能
-- (void)ensureOpenCellEstimateMechanismForAutoAdapter {
-    MLNUICollectionViewGridLayout *layout = (MLNUICollectionViewGridLayout *)self.layout;
-    MLNUICollectionViewAutoFitAdapter *adapter = (MLNUICollectionViewAutoFitAdapter *)self.adapter;
-    if ([layout isKindOfClass:[MLNUICollectionViewGridLayout class]] &&
-        [adapter isKindOfClass:[MLNUICollectionViewAutoFitAdapter class]]) {
-        layout.estimatedItemSize = MLNUICollectionViewAutoFitCellEstimateSize;
-    }
 }
 
 #pragma mark - Getter & setter
@@ -82,7 +71,6 @@
         _adapter = adapter;
         _adapter.collectionView = self.innerCollectionView;
         [self mlnui_pushLazyTask:self.lazyTask];
-        [self ensureOpenCellEstimateMechanismForAutoAdapter];
     }
 }
 
@@ -97,7 +85,6 @@
         layout.scrollDirection = self.innerCollectionView.mlnui_horizontal? MLNUIScrollDirectionHorizontal : MLNUIScrollDirectionVertical;
         _layout = layout;
         self.innerCollectionView.collectionViewLayout = layout;
-        [self ensureOpenCellEstimateMechanismForAutoAdapter];
     }
 }
 

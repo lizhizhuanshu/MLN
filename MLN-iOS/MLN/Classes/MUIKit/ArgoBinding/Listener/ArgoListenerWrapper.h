@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)wrapperWithID:(NSInteger)obID block:(ArgoBlockChange)block observedObject:(id<ArgoListenerProtocol>)observed keyPath:(NSString *)keyPath key:(NSString *)key filter:(ArgoListenerFilter)filter triggerWhenAdd:(BOOL)triggerWhenAdd;
 
-- (BOOL)callWithChange:(NSDictionary *)change;
+- (void)callWithChange:(NSDictionary *)change;
 
 @end
 

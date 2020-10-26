@@ -8,7 +8,6 @@
 #ifndef ArgoListenerProtocol_h
 #define ArgoListenerProtocol_h
 #import "ArgoKitDefinitions.h"
-#import "ArgoObservableObject.h"
 
 //typedef NS_ENUM(NSUInteger, ArgoWatchContext) {
 //    ArgoWatchContext_Lua,
@@ -64,7 +63,7 @@ extern ArgoListenerFilter kArgoWatchKeyListenerFilter;
 - (void)lua_removeLastObject;
 @end
 
-@protocol  ArgoListenerProtocol <ArgoListenerLuaTableProtocol, ArgoListenerCategoryProtocol, ArgoObservableObject>
+@protocol  ArgoListenerProtocol <ArgoListenerLuaTableProtocol, ArgoListenerCategoryProtocol>
 //- (ArgoListenerWrapper *)addObserverWithChangeBlock:(ArgoBlockChange)block forKeyPath:(NSString *)keyPath;
 - (NSObject *)lua_get:(NSString *)key;
 - (void)lua_putValue:(NSObject *)value forKey:(NSString *)key;

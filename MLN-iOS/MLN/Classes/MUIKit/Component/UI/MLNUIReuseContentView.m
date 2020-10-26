@@ -21,8 +21,6 @@
 
 @implementation MLNUIReuseContentView
 
-#pragma mark - Public
-
 - (instancetype)initWithFrame:(CGRect)frame cellView:(UIView<MLNUIReuseCellProtocol> *)cell
 {
     if (self = [super initWithFrame:frame]) {
@@ -32,59 +30,74 @@
     return self;
 }
 
-- (CGSize)caculateContentViewSizeWithMaxSize:(CGSize)maxSize apply:(BOOL)apply {
-    return [self caculateContentViewSizeWithFitSize:CGSizeZero maxSize:maxSize apply:apply];
+#pragma mark - Calculate Layout
+
+static inline void MLNUILayoutNodeClearWidth(UIView *view) {
+    view.mlnui_layoutNode.width = MLNUIValueAuto; // 若要计算自适应宽度，需要清除之前已设置的宽度，否则计算出的是固定宽度
 }
 
-- (CGSize)caculateContentViewSizeWithFitSize:(CGSize)fitSize maxSize:(CGSize)maxSize apply:(BOOL)apply {
-    [self setupLayoutNodeFitSize:fitSize maxSize:CGSizeZero];
-    if (apply) {
-        return [self.mlnui_layoutNode applyLayoutWithSize:maxSize];
-    }
-    return [self.mlnui_layoutNode calculateLayoutWithSize:maxSize];
+static inline void MLNUILayoutNodeClearHeight(UIView *view) {
+    view.mlnui_layoutNode.height = MLNUIValueAuto; // 若要计算自适应高度，需要清除之前已设置的高度，否则计算出的是固定高度
 }
 
-// adapter:initCell(function(cell) --[[这里的 cell 便是下面创建的 lua table--]] end)
-- (MLNUILuaTable *)createLuaTableAsCellNameForLuaIfNeed:(MLNUILuaCore *)luaCore {
+- (CGFloat)calculHeightWithWidth:(CGFloat)width maxHeight:(CGFloat)maxHeight {
+//    MLNUILayoutNodeClearHeight(self);
+//    CGSize size = [self.mlnui_layoutNode calculateLayoutWithSize:CGSizeMake(width, maxHeight)];
+//    return size.height;
+    return [self calculHeightWithWidth:width maxHeight:maxHeight applySize:NO];
+}
+
+- (CGSize)calculSizeWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight {
+    MLNUILayoutNodeClearWidth(self);
+    MLNUILayoutNodeClearHeight(self);
+    return [self.mlnui_layoutNode calculateLayoutWithSize:CGSizeMake(maxWidth, maxHeight)];
+}
+
+- (CGFloat)calculHeightWithWidth:(CGFloat)width maxHeight:(CGFloat)maxHeight applySize:(BOOL)applySize {    MLNUILayoutNodeClearHeight(self);
+    CGSize size = applySize
+    ? [self.mlnui_layoutNode applyLayoutWithSize:CGSizeMake(width, maxHeight)]
+    : [self.mlnui_layoutNode calculateLayoutWithSize:CGSizeMake(width, maxHeight)];
+    return size.height;
+}
+
+#pragma mark - Lua Table
+
+- (void)pushToLuaCore:(MLNUILuaCore *)luaCore
+{
+    [self createLuaTableIfNeed:luaCore];
+    [self setupLayoutNodeIfNeed];
+    [self updateFrameIfNeed];
+}
+
+- (void)createLuaTableIfNeed:(MLNUILuaCore *)luaCore
+{
     if (!_luaTable) {
-        _luaTable = [[MLNUILuaTable alloc] initWithMLNUILuaCore:luaCore env:MLNUILuaTableEnvRegister];
-        [_luaTable setObject:self key:@"contentView"];
+        [self createLuaTableWithLuaCore:luaCore];
     }
-    return _luaTable;
 }
 
-- (void)createLayoutNodeIfNeedWithFitSize:(CGSize)fitSize maxSize:(CGSize)maxSize {
-    [self setupLayoutNodeFitSize:fitSize maxSize:maxSize];
+- (void)setupLayoutNodeIfNeed {
     if (!self.inited) {
         [self mlnui_markNeedsLayout];
         [MLNUI_KIT_INSTANCE(self.mlnui_luaCore) addRootnode:self.mlnui_layoutNode];
     }
 }
 
-#pragma mark - Private
+- (void)createLuaTableWithLuaCore:(MLNUILuaCore *)luaCore
+{
+    _luaTable = [[MLNUILuaTable alloc] initWithMLNUILuaCore:luaCore env:MLNUILuaTableEnvRegister];
+    [_luaTable setObject:self key:@"contentView"];
+}
 
-- (void)setupLayoutNodeFitSize:(CGSize)fitSize maxSize:(CGSize)maxSize {
-    MLNUILayoutNode *node = [self mlnui_layoutNode];
-    if (fitSize.width > 0) {
-        node.width = MLNUIPointValue(fitSize.width);
-    } else if (isnan(fitSize.width)) {
-        node.width = MLNUIValueAuto;
-    }
-    if (fitSize.height > 0) {
-        node.height = MLNUIPointValue(fitSize.height);
-    } else if (isnan(fitSize.height)) {
-        node.height = MLNUIValueAuto;
-    }
-    
-    if (maxSize.width > 0) {
-        node.maxWidth = MLNUIPointValue(maxSize.width);
-    } else if (isnan(maxSize.width)) {
-        node.maxWidth = MLNUIValueUndefined;
-    }
-    if (maxSize.height > 0) {
-        node.maxHeight = MLNUIPointValue(maxSize.height);
-    } else if (isnan(maxSize.height)) {
-        node.maxHeight = MLNUIValueUndefined;
+- (void)updateFrameIfNeed
+{
+    if (!CGSizeEqualToSize(self.frame.size, self.cell.bounds.size)) {
+        CGRect frame = self.cell.bounds;
+        MLNUILayoutNode *node = self.mlnui_layoutNode;
+        node.marginLeft = MLNUIPointValue(frame.origin.x);
+        node.marginTop = MLNUIPointValue(frame.origin.y);
+        node.width = MLNUIPointValue(frame.size.width);
+        node.height = MLNUIPointValue(frame.size.height);
     }
 }
 
@@ -98,15 +111,15 @@
     return NO;
 }
 
-// 当 cell 上含有异步内容 (如：加载网络图片)，当异步内容加载完成后，需要重新调整 cell 大小
-- (void)mlnui_layoutDidChange {
-    [super mlnui_layoutDidChange];
-    if (!CGRectEqualToRect(self.oldFrame, CGRectZero)) {
-        if (self.didChangeLayout) {
-            self.didChangeLayout(self.mlnuiLayoutFrame.size);
-        }
+- (void)mlnui_layoutCompleted {
+    [super mlnui_layoutCompleted];
+    if (CGRectEqualToRect(self.oldFrame, self.mlnuiLayoutFrame) && !CGRectEqualToRect(self.oldFrame, CGRectZero)) {
+        return;
     }
     self.oldFrame = self.mlnuiLayoutFrame;
+    if (self.didChangeLayout) {
+        self.didChangeLayout();
+    }
 }
 
 #pragma mark - Override Method For Lua
@@ -139,17 +152,6 @@
     MLNUIKitLuaAssert(luaui_marginBottom == 0, @"The contentView should not called marginBottom");
 }
 
-@end
 
-@implementation MLNUIReuseAutoSizeContentView
-
-#pragma mark - Override
-
-- (CGSize)caculateContentViewSizeWithMaxSize:(CGSize)maxSize applyToView:(BOOL)apply {
-    MLNUILayoutNode *node = [self mlnui_layoutNode];
-    node.width = MLNUIValueAuto; // 计算自适应宽高，需要确保清除固定宽高设置，否则计算出的是固定宽高
-    node.height = MLNUIValueAuto;
-    return [super caculateContentViewSizeWithMaxSize:maxSize apply:apply];
-}
 
 @end

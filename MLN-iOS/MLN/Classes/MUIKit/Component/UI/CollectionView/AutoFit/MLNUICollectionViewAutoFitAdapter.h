@@ -9,8 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT CGSize MLNUICollectionViewAutoFitCellEstimateSize;
-
 @interface MLNUICollectionViewAutoFitAdapter : MLNUICollectionViewAdapter
 
 @end

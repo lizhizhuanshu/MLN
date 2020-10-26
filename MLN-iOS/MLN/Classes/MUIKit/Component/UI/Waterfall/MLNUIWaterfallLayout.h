@@ -8,8 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "MLNUIEntityExportProtocol.h"
 
-@interface MLNUIWaterfallLayout : UICollectionViewFlowLayout <MLNUIEntityExportProtocol>
-
-@property (nonatomic, assign, readonly) CGSize avaliableSizeForLayoutItem;
+@interface MLNUIWaterfallLayout : UICollectionViewLayout <MLNUIEntityExportProtocol>
 
 @end

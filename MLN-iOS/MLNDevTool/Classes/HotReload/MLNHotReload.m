@@ -128,7 +128,7 @@ static MLNHotReload *sharedInstance;
 
 - (MLNKitInstance *)getKitInstance {
     MLNKitInstance *luaInstance;
-    if (self.useArgo) {
+    if (self.useMLNUI) {
         luaInstance = (MLNKitInstance *)[[MLNUIKitInstanceFactory defaultFactory]  createKitInstanceWithViewController:self.viewController];
     } else {
         luaInstance = [[MLNKitInstanceFactory defaultFactory] createKitInstanceWithViewController:self.viewController];
@@ -179,27 +179,25 @@ static MLNHotReload *sharedInstance;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *vc = self.viewController;
-        if(self.useArgo) {
-            //加载lua文件之前清除掉数据绑定，解决刷新时会使用到上次的数据.
-            // MLNKitInstanceDelegate, MLNViewControllerProtocol
-            BOOL is_mln = [vc conformsToProtocol:@protocol(MLNKitInstanceDelegate)];
-            if (!is_mln) {
-                is_mln = [vc conformsToProtocol:@protocol(MLNViewControllerProtocol)];
-            }
-            if (!is_mln) {
-                id obj = objc_getAssociatedObject(vc, @selector(mlnui_dataBinding));
+        //加载lua文件之前清除掉数据绑定，解决刷新时会使用到上次的数据.
+        // MLNKitInstanceDelegate, MLNViewControllerProtocol
+        BOOL is_mln = [vc conformsToProtocol:@protocol(MLNKitInstanceDelegate)];
+        if (!is_mln) {
+            is_mln = [vc conformsToProtocol:@protocol(MLNViewControllerProtocol)];
+        }
+        if (!is_mln) {
+            id obj = objc_getAssociatedObject(vc, @selector(mlnui_dataBinding));
+            if (obj) {
+                objc_setAssociatedObject(vc, @selector(mlnui_dataBinding), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            } else {
+                obj = objc_getAssociatedObject(vc, @selector(argo_dataBinding));
                 if (obj) {
-                    objc_setAssociatedObject(vc, @selector(mlnui_dataBinding), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                    objc_setAssociatedObject(vc, @selector(argo_dataBinding), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
                 } else {
-                    obj = objc_getAssociatedObject(vc, @selector(argo_dataBinding));
-                    if (obj) {
-                        objc_setAssociatedObject(vc, @selector(argo_dataBinding), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                    } else {
-                        @try {
-                            [vc setValue:nil forKey:@"_dataBinding"];
-                        } @catch (NSException *exception) {
-                            NSLog(@"ex %@",exception);
-                        }
+                    @try {
+                        [vc setValue:nil forKey:@"_dataBinding"];
+                    } @catch (NSException *exception) {
+                        NSLog(@"ex %@",exception);
                     }
                 }
             }
