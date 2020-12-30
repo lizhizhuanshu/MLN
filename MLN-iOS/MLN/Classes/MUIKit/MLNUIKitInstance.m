@@ -17,6 +17,8 @@
 #import "MLNUIKitInstanceConsts.h"
 #import "MLNUIFile.h"
 #import "MLNUIKitBridgesManager.h"
+#import "ArgoBindingConvertor.h"
+#import "MLNUIHeader.h"
 
 #define kMLNUIRunLoopBeforeWaitingLazyTaskOrder   1
 #define kMLNUIRunLoopBeforeWaitingRenderOrder     2
@@ -121,11 +123,13 @@
 
 - (void)luaCore:(MLNUILuaCore *)luaCore error:(NSString *)error
 {
+    Argo_ErrorLog(@"%@", error);
     [self.instanceHandlersManager.errorHandler instance:self error:error];
 }
 
 - (void)luaCore:(MLNUILuaCore *)luaCore luaError:(NSString *)error luaTraceback:(NSString *)luaTraceback
 {
+    Argo_ErrorLog(@"error: %@, trackback: %@", error, luaTraceback);
     [self.instanceHandlersManager.errorHandler instance:self luaError:error luaTraceback:luaTraceback];
 }
 
@@ -285,6 +289,7 @@
 
 - (void)changeLuaBundle:(MLNUILuaBundle *)bundle
 {
+    NSAssert(![[bundle bundlePath] hasSuffix:@"ArgoUISystem.bundle"], @"业务使用的bundle名字不能是ArgoUISystem.bundle");
     _currentBundle = bundle;
     [self.luaCore changeLuaBundle:bundle];
 }
@@ -614,7 +619,7 @@
     if (self = [super init]) {
         _currentBundle = luaBundle;
         if (!convertorClass) {
-            convertorClass = MLNUIKiConvertor.class;
+            convertorClass = ArgoBindingConvertor.class;
         }
         _convertorClass = convertorClass;
         _exporterClass = exporterClass;

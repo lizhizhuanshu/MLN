@@ -10,7 +10,7 @@
 #import "LNFileManager.h"
 #import "MLNServer.h"
 #import "PBCommandBuilder.h"
-#import "MLNNetworkReachabilityManager.h"
+#import <MLN/MLNNetworkReachabilityManager.h>
 
 #define kConnectErrorPortBeingUsedCode 48
 #define kConnectErrorNetUnConnect -1000
@@ -22,6 +22,22 @@
 #endif
 
 #define kHotReloadUSBPort @"kHotReloadUSBPort"
+
+#if DEBUG && 0
+#include <sys/sysctl.h>
+#include <unistd.h>
+NS_INLINE int argo_debug_is_debugger_attached() {
+  // See http://developer.apple.com/library/mac/#qa/qa1361/_index.html
+  int mib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()};
+  struct kinfo_proc info;
+  size_t size = sizeof(info);
+  return sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, NULL, 0) == 0 ?
+      (info.kp_proc.p_flag & P_TRACED) != 0 : 0;
+}
+#define Argo_Pause(log) NSLog(@"%@",log); if(argo_debug_is_debugger_attached())raise(SIGSTOP)
+#else
+#define Argo_Pause(log)
+#endif
 
 @interface MLNServerManager () <MLNNetworkReachabilityProtocol, MLNServerListenerProtocol>
 
@@ -55,6 +71,7 @@
 }
 
 - (void)error:(NSString *)error {
+    Argo_Pause(error);
     [self.server error:error entryFilePath:self.entryFilePath];
 }
 

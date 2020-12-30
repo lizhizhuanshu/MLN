@@ -31,6 +31,7 @@
 #import "MLNUIWaterfallView.h"
 #import "MLNUIWaterfallLayout.h"
 #import "MLNUIWaterfallAdapter.h"
+#import "MLNUIWaterfallAutoAdapter.h"
 #import "MLNUIEditTextView.h"
 #import "MLNUIViewPager.h"
 #import "MLNUIViewPagerAdapter.h"
@@ -95,6 +96,8 @@
 #import "MLNUIHStack.h"
 #import "MLNUISpacer.h"
 
+#import "ArgoDataBindingCBridge.h"
+
 @interface MLNUIKitBridgesManager()
 /**
  承载Kit库bridge和LuaCore实例
@@ -132,17 +135,29 @@
 //static const char *customLuaFiles[] = {"packet/BindMeta", "packet/KeyboardManager", "packet/style"};
 
 - (void)_requireCustomLuaFiles:(MLNUILuaCore *)luaCore {
-    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"ArgoUI" ofType:@"bundle"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"ArgoUISystem" ofType:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithPath:path];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *dirs = [fileManager contentsOfDirectoryAtPath:path error:NULL];
-    dirs = [dirs arrayByAddingObject:@""]; //添加根目录
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
     
-    for (NSString *dirName in dirs) {
-        NSArray *urls = [bundle URLsForResourcesWithExtension:@"lua" subdirectory:dirName];
-        for (NSURL *url in urls) {
-            NSString *requrieName = dirName.length > 0 ? [NSString stringWithFormat:@"%@/%@",dirName,[[url lastPathComponent] stringByDeletingPathExtension]] : [[url lastPathComponent] stringByDeletingPathExtension];
-            [luaCore requireLuaFile:requrieName.UTF8String];
+    NSDirectoryEnumerator *fileEnumerator =
+    [fileManager enumeratorAtURL:bundle.bundleURL
+              includingPropertiesForKeys:nil
+                                 options:NSDirectoryEnumerationSkipsHiddenFiles
+                    errorHandler:^BOOL(NSURL * _Nonnull url, NSError * _Nonnull error) {
+           NSLog(@"error %@ url %@",error, url);
+           return NO;
+    }];
+     
+    for (NSURL *fileURL in fileEnumerator) {
+        NSString *urlPath = [fileURL path];
+        if ([urlPath hasSuffix:@".lua"]) {
+            urlPath = [urlPath stringByDeletingPathExtension];
+            NSRange range = [urlPath rangeOfString:@"ArgoUISystem.bundle"];
+            if (range.location != NSNotFound && urlPath.length > range.location + range.length) {
+                NSString *requireName = [urlPath substringFromIndex:range.location + range.length + 1];
+                requireName = [requireName stringByReplacingOccurrencesOfString:@".lua" withString:@""];
+                [luaCore requireLuaFile:requireName.UTF8String];
+            }
         }
     }
 }
@@ -172,6 +187,7 @@ static NSArray<Class<MLNUIExportProtocol>> *viewClasses;
                         [MLNUIWaterfallView class],
                         [MLNUIWaterfallLayout class],
                         [MLNUIWaterfallAdapter class],
+                        [MLNUIWaterfallAutoAdapter class],
                         [MLNUIEditTextView class],
                         [MLNUIViewPager class],
                         [MLNUIViewPagerAdapter class],
@@ -233,7 +249,11 @@ static NSArray<Class<MLNUIExportProtocol>> *utilClasses;
                         [MLNUISafeAreaAdapter class],
                         [MLNUILink class],
 #if OCPERF_USE_C
+    #if OCPERF_USE_NEW_DB
+                        [ArgoDataBindingCBridge class],
+    #else
                         [MLNUIDataBindingCBridge class],
+    #endif
 #else
                         [MLNUIDataBinding class],
 #endif

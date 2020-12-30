@@ -9,9 +9,9 @@
 #import "MLNHotReload.h"
 #import "PBCommandBuilder.h"
 #import "MLNDebugPrintFunction.h"
-#import "MLNUIDataBinding.h"
-#import "MLNUIDataBindingCBridge.h"
-#import "MLNUIKit.h"
+#import <ArgoUI/MLNUIDataBinding.h>
+#import <ArgoUI/MLNUIDataBindingCBridge.h>
+#import <ArgoUI/MLNUIKit.h>
 
 @interface MLNUIHotReloadViewController ()
 // NavigationBar
@@ -42,7 +42,12 @@
 {
     NSMutableArray *regs = [NSMutableArray arrayWithArray:regClasses ? regClasses :@[]];
     #if OCPERF_USE_C
-        [regs addObject: [MLNUIDataBindingCBridge class]];
+        #if OCPERF_USE_NEW_DB
+                            [regs addObject: NSClassFromString(@"ArgoDataBindingCBridge")];
+        #else
+                            [regs addObject: [MLNUIDataBindingCBridge class]];
+
+        #endif
     #else
         [regs addObject: [MLNUIDataBinding class]];
     #endif
@@ -63,7 +68,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [MLNHotReload getInstance].useMLNUI = YES;
+    [MLNHotReload getInstance].useArgo = YES;
      __weak typeof(self) wself = self;
     [MLNHotReload getInstance].registerBridgeClassesCallback = ^(MLNKitInstance * _Nonnull instance) {
         __strong typeof(wself) sself = wself;

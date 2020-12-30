@@ -17,6 +17,8 @@
 #import "MLNUIViewConst.h"
 #import "MLNUIStack.h"
 
+#define MLNUI_CGSIZE_IS_VALID(size) (size.width >= 0.0001 && size.height >= 0.0001)
+
 @interface MLNUIScrollView()
 
 @property (nonatomic, strong) MLNUIInnerScrollView *innerScrollView;
@@ -142,6 +144,10 @@
     self.innerScrollView.luaui_scrollBeginCallback = callback;
 }
 
+- (void)setLuaui_scrollWillEndDragCallback:(MLNUIBlock *)callback {
+    self.innerScrollView.luaui_scrollWillEndDraggingCallback = callback;
+}
+
 - (void)setLuaui_scrollingCallback:(MLNUIBlock *)callback
 {
     self.innerScrollView.luaui_scrollingCallback = callback;
@@ -215,13 +221,16 @@
     return self.innerScrollView.luaui_disallowFling;
 }
 
-- (void)setLuaui_ContentSize:(CGSize)contentSize {
-    self.innerScrollView.contentSize = contentSize;
-}
-
 - (CGSize)luaui_contentSize {
     return self.innerScrollView.contentSize;
 }
+
+#pragma mark - Override (GestureConflict)
+
+- (UIView *)actualView {
+    return self.innerScrollView;
+}
+
 #pragma mark - Override (Layout)
 
 - (BOOL)mlnui_layoutEnable {
@@ -244,13 +253,36 @@
     if (!_autoFitSize) {
         MLNUIPlaneStack *contentStack = (MLNUIPlaneStack *)self.innerScrollView.mlnui_contentView;
         [contentStack setCrossAxisSize:self.innerScrollView.frame.size]; // 固定宽高情况下，要让contentStack交叉轴大小和scrollView保持一致（主轴方向上滚动）
+        [self ensureContentStackMainAxisEqualLargeThanScrollView:self.innerScrollView.frame.size contentStackNode:contentStack.mlnui_layoutNode];
         [contentStack mlnui_requestLayoutIfNeedWithSize:CGSizeMake(MLNUIUndefined, MLNUIUndefined)]; // 固定宽高不会执行mlnui_sizeThatFits
         
     } else { // 自适应内容要二次测量，处理subviews带有widthPercent/heightPercent的情况
-        MLNUILayoutNode *contentNode = self.innerScrollView.mlnui_contentView.mlnui_layoutNode;
-        contentNode.width = MLNUIPointValue(MAX(contentNode.layoutWidth, self.frame.size.width));
-        contentNode.height = MLNUIPointValue(MAX(contentNode.layoutHeight, self.frame.size.height));
-        [contentNode applyLayoutWithSize:self.frame.size];
+        if (MLNUI_CGSIZE_IS_VALID(self.frame.size)) {
+            MLNUILayoutNode *contentNode = self.innerScrollView.mlnui_contentView.mlnui_layoutNode;
+            contentNode.minWidth = MLNUIPointValue(MAX(contentNode.layoutWidth, self.frame.size.width));
+            contentNode.minHeight = MLNUIPointValue(MAX(contentNode.layoutHeight, self.frame.size.height));
+            [contentNode applyLayoutWithSize:CGSizeZero]; // 因为 MLNUIInnerScrollViewContentStackNode 重写了`applyLayout`, 内部会调用 MLNUIScrollView 的测量布局, 所以此处若直接调用`applyLayout`会导致无限循环
+        }
+    }
+}
+
+#pragma mark - Private
+
+// ContentStack 作为 ScrollView 的子视图，两者大小关系如下：
+// 主轴方向：ContentStack >= ScrollView
+// 交叉轴方向：ContentStack = ScrollView
+- (void)ensureContentStackMainAxisEqualLargeThanScrollView:(CGSize)size contentStackNode:(MLNUILayoutNode *)contentStackNode  {
+    switch (contentStackNode.flexDirection) {
+        case MLNUIFlexDirectionRow:
+        case MLNUIFlexDirectionRowReverse:
+            contentStackNode.minWidth = MLNUIPointValue(size.width);
+            break;
+        case MLNUIFlexDirectionColumn:
+        case MLNUIFlexDirectionColumnReverse:
+            contentStackNode.minHeight = MLNUIPointValue(size.height);
+            break;
+        default:
+            break;
     }
 }
 
@@ -262,7 +294,6 @@
 
 #pragma mark - Export For Lua
 LUAUI_EXPORT_VIEW_BEGIN(MLNUIScrollView)
-LUAUI_EXPORT_VIEW_PROPERTY(contentSize, "setLuaui_ContentSize:", "luaui_contentSize", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_PROPERTY(loadThreshold, "setLuaui_loadahead:", "luaui_loadahead", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_PROPERTY(contentOffset, "setLuaui_ContentOffset:", "luaui_contentOffset", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_PROPERTY(scrollEnabled, "setLuaui_ScrollEnabled:", "luaui_isScrollEnabled", MLNUIScrollView)
@@ -275,6 +306,7 @@ LUAUI_EXPORT_VIEW_PROPERTY(i_bounceVertical, "setLuaui_alwaysBounceVertical:", "
 LUAUI_EXPORT_VIEW_PROPERTY(a_flingSpeed, "mlnui_setFlingSpeed:", "mlnui_flingSpeed" , MLNUIScrollView)
 LUAUI_EXPORT_VIEW_PROPERTY(i_pagingEnabled, "mlnui_setPagingEnable:", "mlnui_pagingEnabled" , MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollBeginCallback, "setLuaui_scrollBeginCallback:",MLNUIScrollView)
+LUAUI_EXPORT_VIEW_METHOD(setScrollWillEndDragCallback, "setLuaui_scrollWillEndDragCallback:",MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollingCallback, "setLuaui_scrollingCallback:",MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setEndDraggingCallback, "setLuaui_endDraggingCallback:",MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setStartDeceleratingCallback, "setLuaui_startDeceleratingCallback:",MLNUIScrollView)
@@ -282,6 +314,7 @@ LUAUI_EXPORT_VIEW_METHOD(setScrollEndCallback, "setLuaui_scrollEndCallback:",MLN
 LUAUI_EXPORT_VIEW_METHOD(setContentInset, "luaui_setContentInset:right:bottom:left:", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(getContentInset, "luaui_getContetnInset:", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollIndicatorInset, "luaui_setScrollIndicatorInset:right:bottom:left:", MLNUIScrollView)
+LUAUI_EXPORT_VIEW_METHOD(contentSize, "luaui_contentSize", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setOffsetWithAnim, "luaui_setContentOffsetWithAnimation:", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollEnable, "mlnui_setLuaScrollEnable:", MLNUIScrollView)
 LUAUI_EXPORT_VIEW_END(MLNUIScrollView, ScrollView, YES, "MLNUIView", "initWithMLNUILuaCore:isHorizontal:")

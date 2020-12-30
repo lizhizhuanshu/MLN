@@ -8,7 +8,7 @@
 #import "MLNUIDataBinding+MLNKit.h"
 #import "MLNUIStaticExporterMacro.h"
 #import "MLNUIKitHeader.h"
-#import "MLNUIKitViewController.h"
+#import <UIKit/UIKit.h>
 #import "MLNUIBlock.h"
 #import "MLNUIBlockObserver.h"
 #import "MLNUIListViewObserver.h"
@@ -23,7 +23,7 @@
 #import "MLNUICollectionView.h"
 
 @implementation MLNUIDataBinding (MLNUIKit)
-#if 1
+#if !OCPERF_USE_C
 #pragma mark - Watch/Get/Update
 + (NSString *)luaui_watchDataForKeys:(NSString *)keys handler:(MLNUIBlock *)handler {
     TICK();
@@ -138,7 +138,7 @@
 
 #pragma mark - ListView
 //+ (void)luaui_bindListViewForKey:(NSString *)key listView:(UIView *)listView {
-//    MLNUIKitViewController *kitViewController = (MLNUIKitViewController *)MLNUI_KIT_INSTANCE([self mlnui_currentLuaCore]).viewController;
+//    UIViewController *kitViewController = (UIViewController *)MLNUI_KIT_INSTANCE([self mlnui_currentLuaCore]).viewController;
 //    MLNUIListViewObserver *observer = [MLNUIListViewObserver observerWithListView:listView keyPath:key];
 //    [kitViewController.dataBinding addArrayObserver:observer forKey:key];
 //}

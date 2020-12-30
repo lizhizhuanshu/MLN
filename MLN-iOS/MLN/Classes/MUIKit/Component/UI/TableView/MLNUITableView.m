@@ -1,4 +1,4 @@
-//
+ //
 //  MMTableView.m
 //  MLNUI
 //
@@ -19,6 +19,10 @@
 #import "MLNUIInnerTableView.h"
 #import "UIView+MLNUIKit.h"
 #import "NSObject+MLNUICore.h"
+#import "UIScrollView+MLNUIGestureConflict.h"
+#import "MLNUIGestureConflictManager.h"
+#import "MLNUILongPressGestureRecognizer.h"
+#import "MLNUITapGestureRecognizer.h"
 
 @interface MLNUITableView()
 @property (nonatomic, strong) MLNUIInnerTableView *innerTableView;
@@ -33,10 +37,6 @@
     // 去除强引用
     MLNUI_Lua_UserData_Release(self.adapter);
     [super mlnui_user_data_dealloc];
-}
-
-- (void)reloadDataInIdleStatus {
-    [self mlnui_pushLazyTask:self.lazyTask];
 }
 
 #pragma mark - Getter
@@ -170,6 +170,15 @@
 - (BOOL)luaui_disallowFling {
     return self.innerTableView.luaui_disallowFling;
 }
+
+ - (NSArray *)luaui_visibleCellsRows {
+     NSArray<NSIndexPath *>              *indexPaths = [self.innerTableView indexPathsForVisibleRows];
+     NSMutableArray *rows = [NSMutableArray arrayWithCapacity:indexPaths.count];
+     [indexPaths enumerateObjectsUsingBlock:^(__kindof NSIndexPath *indexPath, NSUInteger idx, BOOL *stop) {
+         [rows addObject:@(indexPath.row + 1)];
+     }];
+     return rows.copy;
+ }
 
 #pragma mark - Insert
 - (void)luaui_insertAtRow:(NSInteger)row section:(NSInteger)section
@@ -375,9 +384,22 @@
     return NO;
 }
 
+#pragma mark - Override (GestureConflict)
+
+- (UIView *)actualView {
+    return self.innerTableView;
+}
+
 #pragma mark - Gesture
-- (void)handleLongPress:(UIGestureRecognizer *)gesture {
-    if (gesture.state != UIGestureRecognizerStateBegan) {
+- (void)handleLongPress:(MLNUILongPressGestureRecognizer *)gesture {
+    if (gesture.argoui_state != UIGestureRecognizerStateBegan) {
+        [MLNUIGestureConflictManager setCurrentGesture:nil];
+        return;
+    }
+    [MLNUIGestureConflictManager setCurrentGesture:gesture];
+    UIView *responder = [MLNUIGestureConflictManager currentGestureResponder];
+    if (responder != gesture.view) {
+        [MLNUIGestureConflictManager handleResponderGestureActionsWithCurrentGesture:gesture];
         return;
     }
     CGPoint p = [gesture locationInView:self.innerTableView];
@@ -387,8 +409,14 @@
     }
 }
 
-- (void)handleSingleTap:(UIGestureRecognizer *)gesture
+- (void)handleSingleTap:(MLNUITapGestureRecognizer *)gesture
 {
+    [MLNUIGestureConflictManager setCurrentGesture:gesture];
+    UIView *responder = [MLNUIGestureConflictManager currentGestureResponder];
+    if (responder != gesture.view) {
+        [MLNUIGestureConflictManager handleResponderGestureActionsWithCurrentGesture:gesture];
+        return;
+    }
     CGPoint p = [gesture locationInView:self.innerTableView];
     NSIndexPath *indexPath = [self.innerTableView indexPathForRowAtPoint:p];
     if (indexPath && [self.adapter respondsToSelector:@selector(tableView:singleTapSelectRowAtIndexPath:)]) {
@@ -407,17 +435,17 @@
             _innerTableView.estimatedSectionFooterHeight = 0.f;
             _innerTableView.estimatedSectionHeaderHeight = 0.f;
         }
-        _innerTableView.estimatedRowHeight = 300;
+        _innerTableView.estimatedRowHeight = 100;
         _innerTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _innerTableView.backgroundColor = [UIColor clearColor];
         _innerTableView.containerView = self;
         
-        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+        MLNUILongPressGestureRecognizer *lpgr = [[MLNUILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         lpgr.minimumPressDuration  = 0.5;
         lpgr.cancelsTouchesInView = NO;
         [_innerTableView addGestureRecognizer:lpgr];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        MLNUITapGestureRecognizer *tapGesture = [[MLNUITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
         tapGesture.cancelsTouchesInView = NO;
         [tapGesture requireGestureRecognizerToFail:lpgr];
         [_innerTableView addGestureRecognizer:tapGesture];
@@ -461,6 +489,7 @@ LUAUI_EXPORT_VIEW_METHOD(deleteRowsAtSection, "luaui_deleteRowsAtSection:startRo
 LUAUI_EXPORT_VIEW_METHOD(isStartPosition, "luaui_scrollIsTop", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(cellWithSectionRow, "luaui_cellAt:row:", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(visibleCells, "luaui_visibleCells", MLNUITableView)
+LUAUI_EXPORT_VIEW_METHOD(visibleCellsRows, "luaui_visibleCellsRows", MLNUITableView)
 // refresh header
 LUAUI_EXPORT_VIEW_PROPERTY(refreshEnable, "setLuaui_refreshEnable:", "luaui_refreshEnable", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(isRefreshing, "luaui_isRefreshing", MLNUITableView)
@@ -479,6 +508,7 @@ LUAUI_EXPORT_VIEW_METHOD(setLoadingCallback, "setLuaui_loadCallback:", MLNUITabl
 LUAUI_EXPORT_VIEW_PROPERTY(loadThreshold, "setLuaui_loadahead:", "luaui_loadahead", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollBeginCallback, "setLuaui_scrollBeginCallback:", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollingCallback, "setLuaui_scrollingCallback:", MLNUITableView)
+LUAUI_EXPORT_VIEW_METHOD(setScrollWillEndDraggingCallback, "setLuaui_scrollWillEndDraggingCallback:", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(setEndDraggingCallback, "setLuaui_endDraggingCallback:", MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(setStartDeceleratingCallback, "setLuaui_startDeceleratingCallback:",MLNUITableView)
 LUAUI_EXPORT_VIEW_METHOD(setScrollEndCallback, "setLuaui_scrollEndCallback:",MLNUITableView)

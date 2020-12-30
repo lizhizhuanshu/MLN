@@ -28,6 +28,8 @@
 #import "MLNUILogViewer.h"
 #import "MLNUILoadTimeStatistics.h"
 #import "MLNUIHeader.h"
+#import "MLNUIMyErrorHandler.h"
+#import "ArgoUIErrorHandlerComponent.h"
 
 @interface MLNAppDelegate ()
 
@@ -35,6 +37,7 @@
 @property (nonatomic, strong) id<MLNRefreshDelegate> refreshHandler;
 @property (nonatomic, strong) id<MLNImageLoaderProtocol> imgLoader;
 @property (nonatomic, strong) id<MLNNavigatorHandlerProtocol> navHandler;
+@property (nonatomic, strong) id<MLNUIErrorHandlerProtocol> errorHandler;
 
 @property (nonatomic, strong) id<MLNUIImageLoaderProtocol> imgLoader2;
 @end
@@ -43,7 +46,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[MLNUIFPSStatus sharedInstance] open];
+//    [[MLNUIFPSStatus sharedInstance] open];
 //    [[FLEXManager sharedManager] showExplorer];
 //    [MLNUILogViewer setup];
     [self setupMLNKitEnvironment];
@@ -70,6 +73,8 @@
     self.navHandler = [[MLNNavigatorHandler alloc] init];
     // MLNUIKit
     self.imgLoader2 = [[MLNUIMyImageHandler alloc] init];
+//    self.errorHandler = [MLNUIMyErrorHandler new];
+    self.errorHandler = [ArgoUIErrorHandlerComponent new];
     
     [MLNKitEnvironment instancePreload];
     [MLNKitEnvironment setDefaultHttpHandler:self.httpHandler];
@@ -88,7 +93,8 @@
     [MLNUIKitEnvironment setDefaultScrollRefreshHandler:self.refreshHandler];
     [MLNUIKitEnvironment setDefaultImageLoader:self.imgLoader2];
     [MLNUIKitEnvironment setDefaultNavigatorHandler:self.navHandler];
-#if DEBUG
+    [MLNUIKitEnvironment setDefaultErrorHandler:self.errorHandler];
+#if DEBUG && Argo_Debug_Performance_Enable
     [MLNUIKitEnvironment setPerformanceMonitor: [MLNUILoadTimeStatistics sharedStatistics]];
     MLNUIKitPerformanceMonitorForDebug = [MLNUILoadTimeStatistics sharedStatistics];
 #endif
@@ -137,6 +143,7 @@
 }
 
 - (void)registerLink {
+    [MLNLink registerName:@"CustomHotReload" linkClassName:@"MLNUICustomHotReloadViewController"];
     [MLNUILink registerName:@"CustomHotReload" linkClassName:@"MLNUICustomHotReloadViewController"];
 }
 

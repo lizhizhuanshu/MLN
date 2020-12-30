@@ -8,7 +8,7 @@
 #import "MLNUIKitInstance+DevToolDebug.h"
 #import <objc/runtime.h>
 #import "MLNHotReload.h"
-#import "MLNUIKit.h"
+#import <ArgoUI/MLNUIKit.h>
 
 @implementation MLNUIKitInstance (DevToolDebug)
 
@@ -33,7 +33,7 @@
 
 - (BOOL)debug_runWithEntryFile:(NSString *)entryFilePath windowExtra:(NSDictionary *)windowExtra error:(NSError * _Nullable __autoreleasing * _Nullable)error {
     if (entryFilePath.length == 0) return NO;
-    [MLNHotReload openBreakpointDebugIfNeeded:self];
+//    [MLNHotReload openBreakpointDebugIfNeeded:self];
 
     PSTART(MLNUILoadTimeStatisticsType_Total);
     BOOL r = [self debug_runWithEntryFile:entryFilePath windowExtra:windowExtra error:error];
