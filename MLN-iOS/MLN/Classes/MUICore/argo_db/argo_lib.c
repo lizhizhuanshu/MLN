@@ -159,10 +159,11 @@ int argo_open(lua_State *L) {
 }
 
 void argo_preload(lua_State *L) {
-    luaL_getsubtable(L, LUA_REGISTRYINDEX, "_PRELOAD");
+    lua_getfield(L, LUA_GLOBALSINDEX, "package");
+    lua_getfield(L, -1, "preload");
     lua_pushcfunction(L, argo_open);
     lua_setfield(L, -2, LIB_NAME);
-    lua_pop(L, 1);
+    lua_pop(L, 2);
 }
 
 void argo_close(lua_State *L) {
