@@ -322,6 +322,13 @@ extern int mln_luaopen_socket_core(lua_State *L);
 }
 
 #pragma mark - MLNKitInstanceDelegate
+
+- (void)willSetupLuaCore:(MLNKitInstance *)instance {
+    if (self.willUpdateCallback) {
+        self.willUpdateCallback(instance);
+    }
+}
+
 - (void)didSetupLuaCore:(MLNKitInstance *)luaInstance
 {
     // 注册print

@@ -91,6 +91,15 @@
         }
         return extraInfo;
     };
+    [MLNHotReload getInstance].willUpdateCallback = ^(MLNKitInstance * _Nonnull instance) {
+        __strong typeof(wself) sself = wself;
+        @try {
+            [sself setValue:nil forKey:@"_kitInstance"];
+            [[MLNHotReload getInstance] setValue:nil forKey:@"luaInstance"];
+        } @catch (NSException *exception) {
+            NSLog(@"%@", exception);
+        };
+    };
     [[MLNHotReload getInstance] setUpdateCallback:^(MLNKitInstance * _Nonnull instance) {
         __strong typeof(wself) sself = wself;
         @try {
