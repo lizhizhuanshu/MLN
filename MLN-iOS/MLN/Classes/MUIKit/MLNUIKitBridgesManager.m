@@ -98,6 +98,8 @@
 
 #import "ArgoDataBindingCBridge.h"
 
+#import "ArgoUIPage.h"
+
 @interface MLNUIKitBridgesManager()
 /**
  承载Kit库bridge和LuaCore实例
@@ -257,6 +259,7 @@ static NSArray<Class<MLNUIExportProtocol>> *utilClasses;
 #else
                         [MLNUIDataBinding class],
 #endif
+                        [ArgoUIPage class],
         ];
     }
     return utilClasses;

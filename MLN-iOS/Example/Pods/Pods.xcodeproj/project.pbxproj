@@ -1209,6 +1209,8 @@
 		A49287B64141BAA713225310C0EDA17F /* MLNUIScrollCallbackView.h in Headers */ = {isa = PBXBuildFile; fileRef = 60A0C818D3BEDB559CCEBB22E1D6C430 /* MLNUIScrollCallbackView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A49CD1245C1EE0DC5EBEB9BBEF66E612 /* MLNUITableView.h in Headers */ = {isa = PBXBuildFile; fileRef = D243D8892249B7495DB4B12A1E6462AE /* MLNUITableView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A4C192D6C09C9C27B152A8F2A3DED3DF /* MLNUIBounceInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D829FEAD9922ACC4A2E288ACE4B06E /* MLNUIBounceInterpolator.m */; };
+		A4DE233F25B6B0D2002E736C /* ArgoUIPage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE233D25B6B0D2002E736C /* ArgoUIPage.m */; };
+		A4DE234025B6B0D2002E736C /* ArgoUIPage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4DE233E25B6B0D2002E736C /* ArgoUIPage.h */; };
 		A517728B74C1688A3D3F6F28B4EDEFEA /* MLNVStackNode.h in Headers */ = {isa = PBXBuildFile; fileRef = BBAF36F83AE1578E3EB4F748A2837E0E /* MLNVStackNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A51DD027DD977247EFCD85AA0F8325D7 /* GPBUnknownField.h in Headers */ = {isa = PBXBuildFile; fileRef = 8782CE489282DA85C4C64E1C31712F87 /* GPBUnknownField.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A521787AA2BD4C8E7BE7EADD4952986D /* MLNCollectionViewGridLayoutDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 77C94501FD9D8E8499503DAA8CEA3FCA /* MLNCollectionViewGridLayoutDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -3309,6 +3311,8 @@
 		A47FB63B15FDB8467CACE99CCCBD5DD0 /* lobject.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = lobject.c; path = "MLN-iOS/MLN/Classes/LuaLib/lobject.c"; sourceTree = "<group>"; };
 		A481DFC252D438430003740562A74BEB /* MLNUILazyBlockTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MLNUILazyBlockTask.m; sourceTree = "<group>"; };
 		A4A5F477C496FF8965B7B37ADEFA6712 /* ldump.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = ldump.c; path = "MLN-iOS/MLN/Classes/LuaLib/ldump.c"; sourceTree = "<group>"; };
+		A4DE233D25B6B0D2002E736C /* ArgoUIPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgoUIPage.m; sourceTree = "<group>"; };
+		A4DE233E25B6B0D2002E736C /* ArgoUIPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgoUIPage.h; sourceTree = "<group>"; };
 		A4DF32D7A0A75098624839DDCF4802DA /* SDDiskCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDDiskCache.h; path = SDWebImage/Core/SDDiskCache.h; sourceTree = "<group>"; };
 		A4E015C1A2BA6CEC33DFC2EC3645F81B /* MLNHStackNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MLNHStackNode.h; sourceTree = "<group>"; };
 		A4E3090B697D14F2274F644CD19F98EE /* PbcloseCommand.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PbcloseCommand.pbobjc.m; path = "MLN-iOS/MLNDevTool/Classes/MLNProtobuf/PbcloseCommand.pbobjc.m"; sourceTree = "<group>"; };
@@ -6257,6 +6261,7 @@
 				718D72288A309C107C9F22D34F34E21D /* Protocol */,
 				8309E8DF51D0471D72AE1C3E76BA46FD /* Util */,
 				933A82F9303C04CD7B10D70F0315045D /* Yoga */,
+				A4DE233C25B6B0D2002E736C /* ArgoUI */,
 			);
 			name = Kit;
 			sourceTree = "<group>";
@@ -6729,6 +6734,16 @@
 				1A06FB55560892B6DD7E7071628DCF81 /* MLNUIValueCalculatorProtocol.h */,
 			);
 			path = Animation;
+			sourceTree = "<group>";
+		};
+		A4DE233C25B6B0D2002E736C /* ArgoUI */ = {
+			isa = PBXGroup;
+			children = (
+				A4DE233E25B6B0D2002E736C /* ArgoUIPage.h */,
+				A4DE233D25B6B0D2002E736C /* ArgoUIPage.m */,
+			);
+			name = ArgoUI;
+			path = "MLN-iOS/MLN/Classes/Kit/ArgoUI";
 			sourceTree = "<group>";
 		};
 		A6EA9F869B36058BDE85490723657D8E /* EditTextView */ = {
@@ -8894,6 +8909,7 @@
 				E1DE0FB48F3BA261335ECA57C9BB25C3 /* MLNUICollectionViewAdapterProtocol.h in Headers */,
 				BC05F0173CB332264194802F44085341 /* MLNUICollectionViewAutoFitAdapter.h in Headers */,
 				C5ADAC10BDD893717FE5A812F52ECEB0 /* MLNUICollectionViewCell.h in Headers */,
+				A4DE234025B6B0D2002E736C /* ArgoUIPage.h in Headers */,
 				A70AF63CDC110755B1592DAFF7C56E1E /* MLNUICollectionViewGridLayout.h in Headers */,
 				0BFE46E21CAD1A9E2486598414A8B48D /* MLNUICollectionViewGridLayoutDelegate.h in Headers */,
 				93E60167981BDACE758AD83CC8AB327C /* MLNUICollectionViewLayoutProtocol.h in Headers */,
@@ -10281,6 +10297,7 @@
 				22151F5ED3EAE1E5082A0CD301CFA820 /* MLNUISpacer.m in Sources */,
 				AAA7B6D089C642607B3D66B867FB0973 /* MLNUIStack.m in Sources */,
 				82AEF37FE4D21E989087147D1D349078 /* MLNUIStackConst.m in Sources */,
+				A4DE233F25B6B0D2002E736C /* ArgoUIPage.m in Sources */,
 				D80FD6282B49F83E08F5C74AAB1C1B15 /* MLNUIStaticExporter.m in Sources */,
 				B4F939CC2D7A943B1A5A8D97A946078A /* MLNUIStaticFunctionExporter.m in Sources */,
 				E3E2F9D33E2B60FC693174C79BE874EE /* MLNUIStringUtil.m in Sources */,
