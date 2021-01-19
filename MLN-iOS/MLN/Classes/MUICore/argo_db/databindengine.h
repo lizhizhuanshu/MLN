@@ -18,6 +18,10 @@ typedef void* (*D_malloc) (void* src, size_t os, size_t ns);
  */
 int DataBindInit(D_malloc m);
 /**
+ * 释放DataBind单例
+ */
+void DataBindFree(void);
+/**
  * 清除和虚拟机相关的所有缓存
  */
 void DB_Close(lua_State *);

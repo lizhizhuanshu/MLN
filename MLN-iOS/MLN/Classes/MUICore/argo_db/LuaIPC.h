@@ -7,13 +7,13 @@
 
 #include "mln_lua.h"
 
-#define RPC_OK 0
-#define RPC_MEM_ERROR 1
-#define RPC_UNSUPPORTED_TYPE 2
+#define IPC_OK 0
+#define IPC_MEM_ERROR 1
+#define IPC_UNSUPPORTED_TYPE 2
 /**
  * 将src虚拟机栈中index位置数据拷贝到dest的栈顶
  * @return 0: 拷贝成功; 其他看error类型
  */
-int rpc_copy(lua_State *src, int index, lua_State *dest);
+int ipc_copy(lua_State *src, int index, lua_State *dest);
 
 #endif //MMLUA4ANDROID_LUARPC_H

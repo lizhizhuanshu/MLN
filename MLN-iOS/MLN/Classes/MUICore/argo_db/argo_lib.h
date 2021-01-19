@@ -21,4 +21,9 @@ void argo_preload(lua_State *L);
  */
 void argo_close(lua_State *L);
 
+/**
+ * 不再使用
+ */
+void argo_free(void);
+
 #endif //MMLUA4ANDROID_ARGO_LIB_H

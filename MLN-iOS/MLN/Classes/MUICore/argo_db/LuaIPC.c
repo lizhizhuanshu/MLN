@@ -2,7 +2,7 @@
 // Created by XiongFangyu on 2020/6/5.
 //
 
-#include "LuaRPC.h"
+#include "LuaIPC.h"
 #include <string.h>
 #include "lobject.h"
 #include "lstate.h"
@@ -53,7 +53,6 @@ static int copy_value(TValue *dest, TValue *src) {
             break;
         case LUA_TBOOLEAN:
         case LUA_TNUMBER:
-        case LUA_TLIGHTUSERDATA:
             rpc_setobj(dest, src);
             ret = 0;
             break;
@@ -65,7 +64,7 @@ static int copy_value(TValue *dest, TValue *src) {
             break;
         default:
             setnilvalue(dest);
-            return RPC_UNSUPPORTED_TYPE;
+            return IPC_UNSUPPORTED_TYPE;
     }
     if (ret) {
         setnilvalue(dest);
@@ -100,15 +99,16 @@ static void push_value_to_state(lua_State *L, TValue *val) {
 //            break;
 //        case LUA_TUSERDATA:
         default:
+            lua_pushnil(L);
             break;
     }
 }
 
-int rpc_copy(lua_State *src, int index, lua_State *dest) {
+int ipc_copy(lua_State *src, int index, lua_State *dest) {
     TValue *srcValue = index2addr(src, index);
     TValue *destValue = (TValue *) m_malloc(NULL, 0, sizeof(TValue));
     if (!destValue)
-        return RPC_MEM_ERROR;
+        return IPC_MEM_ERROR;
     int ret = copy_value(destValue, srcValue);
     if (ret) {
         m_malloc(destValue, sizeof(TValue), 0);
@@ -117,35 +117,37 @@ int rpc_copy(lua_State *src, int index, lua_State *dest) {
     push_value_to_state(dest, destValue);
     free_value(destValue);
     m_malloc(destValue, sizeof(TValue), 0);
-    return RPC_OK;
+    return IPC_OK;
 }
 
 static void free_value(TValue *val) {
     switch (ttypenv(val)) {
-        case LUA_TBOOLEAN:
-        case LUA_TNUMBER:
-        case LUA_TLIGHTUSERDATA:
-            break;
         case LUA_TSTRING:
             free_string(val);
             break;
         case LUA_TTABLE:
             free_table(val);
             break;
+        case LUA_TBOOLEAN:
+        case LUA_TNUMBER:
         default:    //nil
             return;
     }
 }
 
-///<-fold desc="string copy free">
+//<editor-fold desc="string copy free">
 
+/**
+ * 拷贝string
+ * 只会出现内存分配不上的错误，此时不需要调用free_string来释放内存
+ */
 static int copy_string(TValue *result, TValue *src) {
     TString *ots = &val_(src).gc->ts;
     const char *str = svalue(src);
     size_t len = ots->tsv.len;
     size_t totalsize = sizeof(TString) + ((len + 1) * sizeof(char));
     GCObject *o = obj2gco(m_malloc(NULL, 0, totalsize));
-    if (!o) return RPC_MEM_ERROR;
+    if (!o) return IPC_MEM_ERROR;
     gch(o)->tt = gch(val_(src).gc)->tt;
     TString *ts = &o->ts;
     ts->tsv.len = len;
@@ -155,13 +157,11 @@ static int copy_string(TValue *result, TValue *src) {
 #else                       /**Lua 5.1 */
     ts->tsv.reserved = ots->tsv.reserved;
 #endif
-
     memcpy(ts + 1, str, len * sizeof(char));
     ((char *) (ts + 1))[len] = '\0';
-
     val_(result).gc = o;
     rttype(result) = rttype(src);
-    return RPC_OK;
+    return IPC_OK;
 }
 
 static void free_string(TValue *val) {
@@ -169,13 +169,17 @@ static void free_string(TValue *val) {
     size_t len = o->ts.tsv.len;
     m_malloc(o, sizeof(TString) + ((len + 1) * sizeof(char)), 0);
 }
-///<editor-fold>
+//</editor-fold>
 
-///<-fold desc="table copy free">
+//<editor-fold desc="table copy free">
 
+/**
+ * 在result中增加table的gcObj
+ * 出错时，不需要free_table
+ */
 static int _new_table(TValue *result) {
     GCObject *o = obj2gco(m_malloc(NULL, 0, sizeof(Table)));
-    if (!o) return RPC_MEM_ERROR;
+    if (!o) return IPC_MEM_ERROR;
     gch(o)->tt = LUA_TTABLE;;
     Table *t = &o->h;
     t->metatable = NULL;
@@ -188,7 +192,7 @@ static int _new_table(TValue *result) {
 
     val_(result).gc = o;
     settt_(result, ctb(LUA_TTABLE));
-    return RPC_OK;
+    return IPC_OK;
 }
 
 static void free_table(TValue *val) {
@@ -226,17 +230,21 @@ static void free_table(TValue *val) {
     }
 }
 
+/**
+ * 出错后，不需要调用free_table
+ */
 static int deep_copy_table(TValue *result, TValue *src) {
+    if (_new_table(result)) return IPC_MEM_ERROR;
     Table *ot = hvalue(src);
-    if (_new_table(result)) return RPC_MEM_ERROR;
     Table *t = hvalue(result);
     /// copy array part
     if (ot->sizearray > 0 && ot->array) {
         t->array = (TValue *) m_malloc(NULL, 0, ot->sizearray * sizeof(TValue));
         if (!t->array) {
             free_table(result);
-            return RPC_MEM_ERROR;
+            return IPC_MEM_ERROR;
         }
+        t->sizearray = ot->sizearray;
         int i;
         TValue *oldvalue;
         for (i = 0; i < ot->sizearray; i++) {
@@ -250,7 +258,6 @@ static int deep_copy_table(TValue *result, TValue *src) {
                 return cpr;
             }
         }
-        t->sizearray = ot->sizearray;
     }
     /// copy hash part
     int nodesize = sizenode(ot);
@@ -258,9 +265,10 @@ static int deep_copy_table(TValue *result, TValue *src) {
         t->node = (Node *) m_malloc(NULL, 0, nodesize * sizeof(Node));
         if (!t->node) {
             free_table(result);
-            return RPC_MEM_ERROR;
+            return IPC_MEM_ERROR;
         }
         memset(t->node, 0, nodesize * sizeof(Node));
+        t->lsizenode = ot->lsizenode;
         size_t i;
         Node *on;
         Node *nn;
@@ -288,10 +296,9 @@ static int deep_copy_table(TValue *result, TValue *src) {
                 return cpr;
             }
         }
-        t->lsizenode = ot->lsizenode;
     }
 
-    return RPC_OK;
+    return IPC_OK;
 }
 
 static void push_table(lua_State *L, TValue *src) {
@@ -311,7 +318,7 @@ static void push_table(lua_State *L, TValue *src) {
     }
     lua_pop(L, 1);                          // -1: table
 }
-///</editor-fold>
+//</editor-fold>
 
 /**
  * simple lua stack index to value pointer

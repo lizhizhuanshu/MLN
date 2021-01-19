@@ -99,11 +99,12 @@
             [self.initedHeaderCallback callIfCan];
             [waterfallHeaderView initCompleted];
         }
-        MLNUIKitLuaAssert(self.reuseHeaderCallback, @"It must not be nil callback of header reuse!")
-        [self.reuseHeaderCallback addLuaTableArgument:[waterfallHeaderView getLuaTable]];
-        [self.reuseHeaderCallback addIntArgument:(int)indexPath.section+1];
-        [self.reuseHeaderCallback addIntArgument:(int)indexPath.row+1];
-        [self.reuseHeaderCallback callIfCan];
+        if (self.reuseHeaderCallback) {
+            [self.reuseHeaderCallback addLuaTableArgument:[waterfallHeaderView getLuaTable]];
+            [self.reuseHeaderCallback addIntArgument:(int)indexPath.section+1];
+            [self.reuseHeaderCallback addIntArgument:(int)indexPath.row+1];
+            [self.reuseHeaderCallback callIfCan];
+        }
         return waterfallHeaderView;
     } else {
         static NSString *reuseId = kMLNUIWaterfallViewReuseID;
