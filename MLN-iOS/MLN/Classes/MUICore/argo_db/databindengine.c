@@ -8,6 +8,7 @@
 #include "utils.h"
 #include "LuaIPC.h"
 #include "argo_lua.h"
+#include "mtree.h"
 
 #define CheckThread(L) ((void) 0)
 
@@ -38,12 +39,6 @@ static DataBind *instance = NULL;
  * 记录方式为: key->{function, params}
  */
 #define OBSERVER_TABLE_KEY "__OTK"
-/**
- * 在虚拟机全局表中设定一个特殊表来记录观察者(OTK_IN)
- * 用于监听table内部修改
- * 记录方式为: key->{function, params}
- */
-#define OBSERVER_TABLE_INNER_KEY "__OTK_IN"
 /**
  * 针对需要观察的表，在虚拟机全局表中设定一个特殊表来记录(OATK)
  * 记录方式为: key->table
@@ -79,9 +74,9 @@ static DataBind *instance = NULL;
 #ifdef J_API_INFO
 #define CHECK_STACK_START(L) int _old_top = lua_gettop((L));
 #define CHECK_STACK_END(L, l) if (lua_gettop((L)) - _old_top != l) \
-    luaL_error((L), "%s top error, old: %d, new: %d",__FUNCTION__, _old_top, lua_gettop((L)));
+    luaL_error((L), "%s(%d) top error, old: %d, new: %d",__FUNCTION__, __LINE__, _old_top, lua_gettop((L)));
 #define CHECK_STACK_END_O(L, ot, l) if (lua_gettop((L)) - (ot) != l) \
-    LOGE("o %s top error, old: %d, new: %d",__FUNCTION__, (ot), lua_gettop((L)));
+    LOGE("o %s(%d) top error, old: %d, new: %d",__FUNCTION__, __LINE__, (ot), lua_gettop((L)));
 #else
 #define CHECK_STACK_START(L)
 #define CHECK_STACK_END(L, l)
@@ -98,7 +93,7 @@ static DataBind *instance = NULL;
                                 break;\
                         }
 
-///<editor-fold desc="vm key 相关操作">
+//<editor-fold desc="vm key 相关操作">
 
 static int _str_equals(const void *a, const void *b) {
     const char *ba = (const char *) a;
@@ -160,10 +155,71 @@ static inline void _check_instance(lua_State *L) {
         luaL_error(L, "argo databinding instance not init");
     }
 }
-///</editor-fold>
+//</editor-fold>
 
-///<editor-fold desc="observable table">
-///<editor-fold desc="callback">
+//<editor-fold desc="observable table">
+//<editor-fold desc="callback">
+/**
+ * 获取table中key的值，key可以是多级的
+ * 进入栈:无
+ * 退出栈:key在table中的值，或中途因为非table造成的中断值
+ * @return 0: 成功; 其他，key从0~len的值在table中不是table，且后续还有'.'
+ */
+static inline int _get_table_by_key(lua_State *L, const char *key, int table, int *last_key_start) {
+    if (!key) {
+        lua_pushvalue(L, table);
+        return 0;
+    }
+    static const size_t _max = 100;
+    char tkey[_max];
+    size_t index = 0;
+    size_t key_len = strlen(key);
+    char *dot = strchr(key, '.');
+    int lkeyindex = 0;
+    char *end;
+    int num;
+    lua_pushvalue(L, table);
+    /// -1:table
+    while (dot && lua_istable(L, -1)) {
+        index = dot - key;
+        memcpy(tkey, key, index);
+        tkey[index] = '\0';
+
+        if (string_to_int(tkey, &num)) {
+            lua_pushinteger(L, num);
+            lua_gettable(L, -2);
+        } else {
+            lua_getfield(L, -1, tkey);
+        }
+        lua_remove(L, -2);
+        /// -1: value
+        lkeyindex = (int) (dot - key) + 1;
+        dot = strchr(&dot[1], '.');
+    }
+    /// -1: value
+    if (last_key_start)
+        *last_key_start = lkeyindex;
+    /// dot != NULL 说明-1不是table
+    if (dot) {
+        return (int) (dot - key);
+    }
+    /// dot == NULL，最后一个key前的value不为table
+    if (!lua_istable(L, -1)) {
+        return lkeyindex - 1;
+    }
+    memcpy(tkey, &key[lkeyindex], key_len - lkeyindex);
+    tkey[key_len - lkeyindex] = '\0';
+    if (string_to_int(tkey, &num)) {
+        lua_pushinteger(L, num);
+        lua_gettable(L, -2);
+    } else {
+        lua_getfield(L, -1, tkey);
+    }
+    lua_remove(L, -2);
+    /// -1: value
+    return 0;
+}
+
 /**
  * 存储原虚拟机和新旧数据栈位置
  */
@@ -177,24 +233,311 @@ typedef struct DataContainer {
 } _DC;
 
 /**
+ * OTK中查找对应lua函数
+ * 通过key寻找callback，若找到，则栈顶为function，若没找到，栈顶为OTK
+ * 传入时，dest栈顶必须为OTK
+ * @return 找到时，返回param
+ */
+static inline int _get_callback_function(lua_State *dest, const char *key) {
+    /// -1: OTK
+    lua_getfield(dest, -1, key);
+    if (!lua_istable(dest, -1)) {
+        lua_pop(dest, 1);
+        return 0;
+    }
+    /// -1:{function, params} -2:OTK
+    lua_rawgeti(dest, -1, 1);
+    if (!lua_isfunction(dest, -1)) {
+        lua_pop(dest, 2);
+        return 0;
+    }
+    /// -1: function, -2: {function, params} -3:OTK
+    lua_rawgeti(dest, -2, 2);
+    if (!lua_isnumber(dest, -1)) {
+        lua_pop(dest, 3);
+        return 0;
+    }
+    int params = lua_tointeger(dest, -1);
+    lua_pop(dest, 1);
+    lua_remove(dest, -2);
+    /// -1: function, -2:OTK
+    return params;
+}
+/**
+ * 查找callback并回调
+ * 进入时，dest栈为:-1:function
+ * @param params 回调参数
+ * @param old_index 旧值在dest中的位置
+ * @param new_index 新值在dest中的位置
+ *
+ * 复制旧值和新值,不使用ipc复制
+ * 调用函数
+ */
+static inline void _real_callback(lua_State *dest,
+        int params, int old_index, int new_index) {
+    int top = lua_gettop(dest);
+    old_index = old_index < 0 ? top + old_index + 1 : old_index;
+    new_index = new_index < 0 ? top + new_index + 1 : new_index;
+    /// -1: function, -2:OTK
+    /// step 2
+    if (params > 0) {
+        lua_pushvalue(dest, new_index);
+    }
+    if (params > 1) {
+        lua_pushvalue(dest, old_index);
+    }
+    /// maybe -1:old, -2:new, -3:function
+    /// step 3
+    lua_call(dest, params, 0);
+}
+/**
+ * 先检查是否有对应的callback，然后回调
+ * @param oldindex src中old下标
+ * @param newindex src中new下标
+ * @param needcopy 是否需要ipc copy old和new的flag，0位表示new，1位表示old; 1表示需要
+ * @return 1:回调，0:无回调
+ */
+static inline int _check_and_callback(lua_State *src,
+        lua_State *dest, const char *key,
+        int oldindex, int newindex) {
+    /// -1: OTK
+    int params = _get_callback_function(dest, key);
+    if (lua_isfunction(dest, -1)) {
+        /// -1: function, -2: otk
+        int functionIndex = -1;
+        if (dest != src) {
+            if (params > 0) {
+                int ret = ipc_copy(src, newindex, dest);
+                if (ret != IPC_OK) {
+                    lua_pop(dest, 2);
+                    IPC_RESULT(ret);
+                    luaL_error(src, "callback failed, msg: %s, target(%s): %s",
+                               msg, luaL_typename(src, -1), luaL_tolstring(src, -1, NULL));
+                    return -1;
+                }
+                newindex = -1;
+                functionIndex--;
+            }
+            if (params > 1) {
+                /// -1:new, -2: function, -3: otk
+                int ret = ipc_copy(src, oldindex, dest);
+                if (ret != IPC_OK) {
+                    lua_pop(dest, 3);
+                    IPC_RESULT(ret);
+                    luaL_error(src, "callback failed, msg: %s, target(%s): %s",
+                               msg, luaL_typename(src, -1), luaL_tolstring(src, -1, NULL));
+                    return -1;
+                }
+                oldindex = -1;
+                if (newindex < 0)
+                    newindex --;
+                functionIndex--;
+            }
+            if (functionIndex != -1) {
+                /// push function
+                lua_pushvalue(dest, functionIndex);
+                if (newindex < 0)
+                    newindex --;
+                if (oldindex < 0)
+                    oldindex --;
+                /// -1:function, -2:old, -3:new, -4:function, -5:OTK
+            } /// else -1: function, -2: OTK
+        } /// else -1: function, -2:OTK
+        _real_callback(dest, params, oldindex, newindex);
+        if (functionIndex != -1) {
+            /// at lease copy new
+            /// -1:old, -2:new, -3:function, -4:OTK
+            /// if params == 1 then newindex = -3 else newindex = -2
+            lua_pop(dest, -newindex);
+        } /// else -1:OTK
+        return 1;
+    }
+    return 0;
+}
+
+typedef struct KeyTreeUD {
+    lua_State *src;
+    lua_State *dest;
+    int *need_copy;
+    int oldindex;
+    int newindex;
+    int OTKindex;
+    char *nil_after_key;
+} KTUD;
+
+/**
+ * 1、检查callback
+ * 2、copy value or not
+ * 3、根据find值，查询copy value中对应值，若非table，当nil处理
+ * 4、回调
+ * 5、保存copy value给下次使用
+ * dest栈：进入时，无特殊
+ *      出函数，根据ud->need_copy 增加一个新值或一个旧值
+ * @return 0 继续遍历，1停止遍历
+ */
+static int _traverse_key_tree(const char *srckey, const char *find, void *ud) {
+    static const int _max = 400;
+    char key[_max];
+    size_t src_len = strlen(srckey);
+    size_t find_len = strlen(find);
+    memcpy(key, srckey, src_len);
+    key[src_len] = '.';
+    memcpy(&key[src_len + 1], find, find_len);
+    key[src_len + find_len + 1] = '\0';
+    KTUD *ktud = (KTUD *) ud;
+    if (ktud->nil_after_key[0] != '\0') {
+        if (strstr(key, ktud->nil_after_key) == key) {
+            return 0;
+        }
+    }
+
+    lua_State *src = ktud->src;
+    lua_State *dest = ktud->dest;
+    int *need_copy = ktud->need_copy;
+    int oldindex = ktud->oldindex;
+    int newindex = ktud->newindex;
+    int OTKindex = ktud->OTKindex;
+    CHECK_STACK_START(dest);
+
+    /// step 1
+    lua_pushvalue(dest, OTKindex);
+    /// -1: OTK
+    int params = _get_callback_function(dest, key);
+    if (!lua_isfunction(dest, -1)) {
+        /// -1: OTK
+        lua_pop(dest, 1);
+        return 0;
+    }
+    /// -1: function, -2: OTK
+    lua_remove(dest, -2);
+
+    /// step 2
+    /// -1: function
+    int functionIndex = -1;
+    int copy_count = 0;
+    if (dest != src) {
+        if (params > 0 && ((*need_copy) & 1) == 1) {
+            int ret = ipc_copy(src, newindex, dest);
+            if (ret != IPC_OK) {
+                lua_pop(dest, 2);
+                IPC_RESULT(ret);
+                luaL_error(src, "callback failed, msg: %s, target(%s): %s",
+                           msg, luaL_typename(src, -1), luaL_tolstring(src, -1, NULL));
+                return 1;
+            }
+            newindex = -1;
+            functionIndex--;
+            *need_copy = (*need_copy) & 0x2;
+            copy_count++;
+        }
+        if (params > 1 && ((*need_copy) & 2) == 2) {
+            /// -1:new, -2: function, -3: otk
+            int ret = ipc_copy(src, oldindex, dest);
+            if (ret != IPC_OK) {
+                lua_pop(dest, 3);
+                IPC_RESULT(ret);
+                luaL_error(src, "callback failed, msg: %s, target(%s): %s",
+                           msg, luaL_typename(src, -1), luaL_tolstring(src, -1, NULL));
+                return 1;
+            }
+            oldindex = -1;
+            if (newindex < 0)
+                newindex --;
+            functionIndex--;
+            *need_copy = (*need_copy) & 0x1;
+            copy_count++;
+        }
+    }/// else -1: function no copy
+    if (functionIndex != -1) {
+        /// some value copy
+        lua_pushvalue(dest, functionIndex);
+        lua_remove(dest, functionIndex - 1);
+        functionIndex = -1;
+        int top = lua_gettop(dest);
+        if (oldindex < 0) {
+            ktud->oldindex = top + oldindex;
+        }
+        if (newindex < 0) {
+            ktud->newindex = top + newindex;
+        }
+    }
+
+    /// step 3 根据find值，查询copy value中对应值，若非table，当nil处理
+    /// -1: function
+    if (params > 0) {
+        /// 需要新值，取
+        int ret = _get_table_by_key(dest, find, ktud->newindex, NULL);
+        /// -1: value, -2: function
+        if (ret != 0) {
+            lua_pop(dest, 2);
+            lua_pushnil(dest);
+            memcpy(ktud->nil_after_key, srckey, src_len);
+            ktud->nil_after_key[src_len] = '.';
+            memcpy(&ktud->nil_after_key[src_len+1], find, find_len);
+            ktud->nil_after_key[src_len + find_len + 1] = '\0';
+            CHECK_STACK_END(dest, copy_count);
+            return 0;
+        }
+        /// -1: value, -2: function
+        newindex = -1;
+        functionIndex --;
+    }
+    if (params > 1) {
+        /// 需要新值，取
+        int ret = _get_table_by_key(dest, find, ktud->oldindex, NULL);
+        /// -1: value, -2: function
+        if (ret != 0) {
+            lua_pop(dest, 1);
+            lua_pushnil(dest);
+        }
+        oldindex = -1;
+        newindex --;
+        functionIndex --;
+    }
+    if (functionIndex != -1) {
+        /// at lease copy new
+        /// push function
+        lua_pushvalue(dest, functionIndex);
+        oldindex --;
+        newindex --;
+    } /// else -1:function no copy
+
+    /// -1: function
+    /// step 4
+    _real_callback(dest, params, oldindex, newindex);
+    /// do copy before, so remove function
+    if (functionIndex != -1)
+        lua_remove(dest, functionIndex);
+    if (params > 1) {
+        lua_pop(dest, 2);
+    } else if (params > 0) {
+        lua_pop(dest, 1);
+    }
+
+    CHECK_STACK_END(dest, copy_count);
+    return 0;
+}
+/**
  * 调用lua函数通知数据改变
+ * 查找目标虚拟机的key Tree，回调_DC->key及后续所有的监听
  * @param l 目标虚拟机
  * @param ud _DC
+ * @return 0继续遍历
  *
- * 1、OTK中查找对应lua函数
- * 2、复制旧值和新值
- * 3、调用函数
+ * 1、查找对应的key回调
+ * 2、OTK中查找对应key Tree
+ * 3、复制旧值和新值
+ * 4、调用函数
  */
-static int _callbackTraverseReal(const void *l, void *ud, char *table_key) {
+static int _callbackTraverse(const void *l, void *ud) {
     lua_State *dest = (lua_State *) l;
     CheckThread(dest);
     _DC *dc = (_DC *) ud;
     CHECK_STACK_START(dc->L);
-
     int oldTop = lua_gettop(dest);
 
     /// step 1
-    lua_getglobal(dest, table_key);
+    lua_getglobal(dest, OBSERVER_TABLE_KEY);
     if (!lua_istable(dest, -1)) {
         lua_settop(dest, oldTop);
         CHECK_STACK_END_O(dest, oldTop, 0);
@@ -202,110 +545,46 @@ static int _callbackTraverseReal(const void *l, void *ud, char *table_key) {
         return 0;
     }
     /// -1: OTK
-    if (table_key == OBSERVER_TABLE_INNER_KEY) {
-        lua_getfield(dest, -1, dc->parent);
-        if (!lua_istable(dest, -1)) {
-            lua_settop(dest, oldTop);
-            CHECK_STACK_END_O(dest, oldTop, 0);
-            CHECK_STACK_END(dc->L, 0);
-            return 0;
-        }
-    } else {
-        lua_getfield(dest, -1, dc->key);
-        if (!lua_istable(dest, -1)) {
-            lua_settop(dest, oldTop);
-            CHECK_STACK_END_O(dest, oldTop, 0);
-            CHECK_STACK_END(dc->L, 0);
-            return 0;
-        }
-    }
-    lua_remove(dest, -2);
-    /// -1:{function, params}
-    lua_rawgeti(dest, -1, 1);
-    if (!lua_isfunction(dest, -1)) {
-        lua_settop(dest, oldTop);
-        CHECK_STACK_END_O(dest, oldTop, 0);
-        CHECK_STACK_END(dc->L, 0);
-        return 0;
-    }
-    /// -1: function, -2: {function, params}
-    lua_rawgeti(dest, -2, 2);
-    if (!lua_isnumber(dest, -1)) {
-        lua_settop(dest, oldTop);
-        CHECK_STACK_END_O(dest, oldTop, 0);
-        CHECK_STACK_END(dc->L, 0);
-        return 0;
-    }
-    int params = lua_tointeger(dest, -1);
-    lua_pop(dest, 1);
-    lua_remove(dest, -2);
-    /// -1: function
+    /// 直接查找callback，并回调
+    _check_and_callback(dc->L, dest, dc->key, dc->oldIndex, dc->newIndex);
 
-    int oldIndexOffset = 1; //-1: function，同一虚拟机情况
     /// step 2
-    if (table_key == OBSERVER_TABLE_INNER_KEY) {//function(type, key, new, old)
-        lua_pushinteger(dest, dc->changeType);//-1:type, -2:function
-        lua_pushstring(dest, dc->key);//-1:change_key, -2:type, -3:function
-        oldIndexOffset += 2;
+    /// -1: OTK
+    lua_rawgeti(dest, -1, 1);
+    Tree *key_tree = NULL;
+    if (lua_isuserdata(dest, -1)) {
+        key_tree = lua_touserdata(dest, -1);
     }
+    ///没有key tree的情况下
+    if (!key_tree) {
+        lua_pop(dest, 2);
+        return 0;
+    }
+    lua_pop(dest, 1);
 
-    if (params > 0) {
-        int ret;
-        if (dc->L != dest) {
-            ret = ipc_copy(dc->L, dc->newIndex, dest);
-        } else {
-            lua_pushvalue(dest, dc->newIndex);
-            oldIndexOffset += 1;
-            ret = IPC_OK;
-        }
-        if (ret != IPC_OK) {
-            lua_settop(dest, oldTop);
-            CHECK_STACK_END_O(dest, oldTop, 0);
-            CHECK_STACK_END(dc->L, 0);
-            IPC_RESULT(ret);
-            luaL_error(dc->L, "callback by table key(\"%s\") failed, msg: %s, target(%s): %s",
-                    table_key, msg, luaL_typename(dc->L, -1), luaL_tolstring(dc->L, -1, NULL));
-            return 1;
-        }
+    /// -1: OTK
+    /*0x01: copy new, 0x02: copy old*/
+    int need_copy = 3;
+    char nil_after_key[400] = {0};
+    KTUD ktud = {dc->L, dest, &need_copy, dc->oldIndex, dc->newIndex, lua_gettop(dest), nil_after_key};
+    tree_traverse(key_tree, _traverse_key_tree, dc->key, &ktud);
+    if ((need_copy & 1) == 0) {
+        /// copy new
+        lua_remove(dest, ktud.newindex);
     }
-    if (params > 1) {
-        int ret;
-        if (dc->L != dest) {
-            ret = ipc_copy(dc->L, dc->oldIndex, dest);
-        } else {
-            lua_pushvalue(dest, dc->oldIndex - oldIndexOffset);//-1: new -2: function -3 *****
-            ret = IPC_OK;
-        }
-        if (ret) {
-            lua_settop(dest, oldTop);
-            CHECK_STACK_END_O(dest, oldTop, 0);
-            CHECK_STACK_END(dc->L, 0);
-            IPC_RESULT(ret);
-            luaL_error(dc->L, "callback by table key(\"%s\") failed, msg: %s, target(%s): %s",
-                       table_key, msg, luaL_typename(dc->L, -1), luaL_tolstring(dc->L, -1, NULL));
-            return 1;
-        }
+    if ((need_copy & 2) == 0) {
+        /// copy old
+        lua_remove(dest, ktud.oldindex);
     }
-
-    ///-1:old, -2:new, -3:change_key, -4:type, -5:function
-    /// step 3
-    lua_call(dest, params, 0);
-    lua_settop(dest, oldTop);
+    lua_pop(dest, 1);
     CHECK_STACK_END_O(dest, oldTop, 0);
     CHECK_STACK_END(dc->L, 0);
     return 0;
 }
 
-static int _callbackTraverse(const void *l, void *ud) {
-    return _callbackTraverseReal(l, ud, OBSERVER_TABLE_KEY);
-}
+//</editor-fold>
 
-static int _callbackTableInnerTraverse(const void *l, void *ud) {
-    return _callbackTraverseReal(l, ud, OBSERVER_TABLE_INNER_KEY);
-}
-// </editor-fold>
-
-// <editor-fold desc="i/pairs start">
+//<editor-fold desc="i/pairs start">
 /**
  * oldtable被新表包装，无法i\pairs()
  * 这里在原表中插入代理方法。替换为oldtable
@@ -364,9 +643,9 @@ static int luaB_pairs(lua_State *L) {
 static int luaB_ipairs(lua_State *L) {
     return pairsmeta(L, 1, ipairsaux);
 }
-///</editor-fold>
+//</editor-fold>
 
-///<editor-fold desc="mock other function">
+//<editor-fold desc="mock other function">
 /**
  * __newindex对应的lua函数
  * 参数为: table,参数名称,值
@@ -377,60 +656,65 @@ static int luaB_ipairs(lua_State *L) {
  */
 static int __newindexCallback(lua_State *L) {
     CHECK_STACK_START(L);
-    /// step 1
+    /// step 1 拿到原值
     lua_getmetatable(L, 1);
     lua_getfield(L, -1, LUA_INDEX_KEY);
-
-    /// -1: source table -2:metatable
+    /// -1: source table, -2:mt
     lua_pushvalue(L, 2);
     lua_gettable(L, -2);
-    /// -1: source data ; -2: source table -3:metatable
+    /// -1: old data ; -2: source table, -3:mt
 
-    /// step 2
+    /// step 2 设置新值 source_table[v_in_2]=v_in_3
     lua_pushvalue(L, 2);
     lua_pushvalue(L, 3);
     lua_settable(L, -4);
-    /// -1: source data ; -2: source table -3:metatable
+    /// -1: old data ; -2: source table -3:mt
 
-    lua_getfield(L, -3,
-                 OBSERVER_TABLE_IGNORE_FLAG);//-1:flag -2: source data ; -3: source table -4:metatable
+    lua_getfield(L, -3, OBSERVER_TABLE_IGNORE_FLAG);
+    //-1:flag -2: old data ; -3: source table -4:mt
     if (lua_toboolean(L, -1) == 1) {
         lua_pop(L, 4);
         CHECK_STACK_END(L, 0);
         return 0;
     }
     lua_pop(L, 1);
-
+    /// -1: old data ; -2: source table -3:mt
     int changeType = 0;
-    lua_getfield(L, -3,
-                 OBSERVER_TABLE_CHANGE_TYPE_FLAG);//-1:changeType -2: source data ; -3: source table -4:metatable
+    lua_getfield(L, -3, OBSERVER_TABLE_CHANGE_TYPE_FLAG);
+    //-1:changeType -2: old data ; -3: source table -4:mt
     if (lua_isnumber(L, -1)) {
         changeType = lua_tointeger(L, -1);//操作类型
     }
     lua_pop(L, 1);
+    lua_remove(L, -2);
+    lua_remove(L, -2);
+    /// -1: old data
 
-    /// step 3
-    int idx = lua_upvalueindex(1);
-    const char *parent = luaL_checkstring(L, idx);
-    const size_t LEN = 200;
+    /// step 3 查询最根层key，找到所有虚拟机，并根据当前key，callback所有后级key
+    /// root key: 最根层key，不含'.'
+    /// key: 当前key，被修改的值的key，含有'.'
+    const char *parent = luaL_checkstring(L, lua_upvalueindex(1));
+    const size_t LEN = 300;
     char key[LEN];
     lua_pushvalue(L, 2);
     join_3string(parent, ".", lua_tostring(L, -1), key, LEN);
     lua_pop(L, 1);
-    List *list = map_get(instance->key_observer, key);
+    char *dot_index = strchr(parent, '.');
+    char root_key[100] = {0};
+    if (dot_index) {
+        memcpy(root_key, parent, dot_index - parent);
+    } else {
+        memcpy(root_key, parent, strlen(parent));
+    }
 
+    List *list = (List *) map_get(instance->key_observer, root_key);
     if (list) {
-        _DC ud = {L, -1, 3, key, parent, changeType};
+        /// -1: old data
+        _DC ud = {L, lua_gettop(L), 3, key, root_key, changeType};
         list_traverse(list, _callbackTraverse, &ud);
     }
-
-    //判断是否有监听parent字段，
-    list = map_get(instance->key_observer, parent);
-    if (list) {
-        _DC ud = {L, -1, 3, key, parent, changeType};
-        list_traverse(list, _callbackTableInnerTraverse, &ud);
-    }
-    lua_pop(L, 3);
+    /// -1: source data
+    lua_pop(L, 1);
     CHECK_STACK_END(L, 0);
 
     return 0;
@@ -457,9 +741,9 @@ static int __lenFunction(lua_State *L) {
 
     return 1;
 }
-///</editor-fold>
+//</editor-fold>
 
-// <editor-fold desc="observable table">
+//<editor-fold desc="observable table">
 /**
  * 使用新表代替旧表，设置flag、设置__index为原表、__newindex为callback函数，设置metatable
  * 遍历子节点，并将所有table都设置上
@@ -561,82 +845,23 @@ static inline void getObservableTable(lua_State *L, const char *key) {
     lua_remove(L, -2);
     CHECK_STACK_END(L, 1);
 }
-// </editor-fold>
-// </editor-fold>
+//</editor-fold>
+//</editor-fold>
 
-/**
- * 针对观察者，在虚拟机全局表中设定一个特殊表来记录(OTK)
- * 记录方式为: key->{function, type}
- * 并且记录key对应的虚拟机 (key_observer)
- * 记录方式为: key->List(lua_State)
- *
- * @param key model名称
- * @param type 类型，取值范围[0,2] (对应后续回调参数个数) | CALLBACK_PARAMS_TYPE(watchTable回调函数type，返回change_key、type、old、new)
- * @param functionIndex lua回调函数栈位置
- * @param table_key 两种类型 OBSERVER_TABLE_KEY|OBSERVER_TABLE_INNER_KEY
- * @type 返回参数数量
- */
-static void
-DB_Watch_Inner(lua_State *L, const char *key, int type, int functionIndex, const char *table_key) {
-    CHECK_STACK_START(L);
-    /// 记录回调
-    lua_getglobal(L, table_key);
-    if (!lua_istable(L, -1)) {
-        lua_pop(L, 1);
-        lua_createtable(L, 0, 5);
-        lua_pushvalue(L, -1);
-        lua_setglobal(L, table_key);
-    }
-    /*OTK[key] = {callback, type}*/
-    /// stack: OTK
-    lua_createtable(L, 2, 0);
-    lua_pushvalue(L, functionIndex);
-    lua_rawseti(L, -2, 1);
-    lua_pushinteger(L, type);
-    lua_rawseti(L, -2, 2);
-    /// -1: {function, type}, -2: OTK
-    lua_setfield(L, -2, key);
-    lua_pop(L, 1);
-    /// stack: none
-
-    /*记录观察者虚拟机 (instance->key_observer[key]).add(L)*/
-    /// stack: OTK
-    List *list = map_get(instance->key_observer, key);
-    if (!list) {
-        list = list_new(instance->alloc, 5, 0);
-        if (!list) {
-            CHECK_STACK_END(L, 0);
-            luaL_error(L, "cannot watch \"%s\" because no memory");
-            return;
-        }
-        map_put(instance->key_observer, (void *) copystr(key), list);
-    } else if (list_index(list, L) < list_size(list)) {
-        /// 已存储
-        CHECK_STACK_END(L, 0);
-        return;
-    }
-    list_add(list, L);
-    /*记录虚拟机中所有的key值 map[L] = List(keys)*/
-    saveVmKey(L, key);
-    CHECK_STACK_END(L, 0);
-}
-
+//<editor-fold desc="static">
 /**
  * 查找OATK表中，找到key对应的表，并放入栈顶
- * 正确返回，栈顶为key(nil) -2为table
+ * 正确返回，栈顶为为table
  * 如果未找到，返回NULL，并将错误信息以string的形式push到L栈顶
  */
-static lua_State *DB_findTarget(lua_State *L, const char *key) {
+static inline lua_State *DB_findTarget(lua_State *L, const char *key, char **sec_key) {
     const size_t SIZE = 100;
     char realKey[SIZE] = {0};
-    size_t index = 0;
     size_t keyLen = strlen(key);
     /// step 1
     char *dot = strchr(key, '.');
     if (dot) {
-        size_t len = dot - key;
-        index = len + 1;
-        memcpy(realKey, key, len);
+        memcpy(realKey, key, dot - key);
     } else {
         memcpy(realKey, key, keyLen);
     }
@@ -658,62 +883,23 @@ static lua_State *DB_findTarget(lua_State *L, const char *key) {
         return NULL;
     }
     /// 多级情况,index= '.'后第一位
-    if (index) {
-        size_t startIndex = index;
-        int numKey;
-        while (index < keyLen) {
-            /// 多级的中间key，取得中间key对应的table
-            if (key[index] == '.') {
-                realKey[index - startIndex] = '\0';
-                /// 数组类型
-                if (string_to_int(realKey, &numKey)) {
-                    lua_pushinteger(target, numKey);
-                    lua_gettable(target, -2);
-                } else {
-                    lua_getfield(target, -1, realKey);
-                }
-                lua_remove(target, -2);
-                if (!lua_istable(target, -1)) {
-                    char temp[SIZE] = {0};
-                    memcpy(temp, key, index);
-                    lua_pushfstring(L, "binding data \"%s\" is not a table, but a \"%s\"",
-                                    temp,
-                                    luaL_typename(target, -1));
-                    lua_pop(target, 1);
-                    CHECK_STACK_END(target, 0);
-                    return NULL;
-                }
-
-                startIndex = ++index;
-                continue;
-            }
-            realKey[index - startIndex] = key[index];
-            index++;
-        }
-        /// 多级中最后一级key
-        realKey[index - startIndex] = '\0';
-
-        /// 数组类型
-        if (string_to_int(realKey, &numKey)) {
-            lua_pushinteger(target, numKey);
-        } else {
-            lua_pushstring(target, realKey);
-        }
-        /// -1: key -2:table
-        CHECK_STACK_END(target, 2);
-        return target;
+    if (dot) {
+        if (sec_key)
+            *sec_key = &dot[1];
     } else {
-        lua_pushnil(target);
-        CHECK_STACK_END(target, 2);
-        return target;
+        if (sec_key)
+            *sec_key = NULL;
     }
+    /// -1:table
+    CHECK_STACK_END(target, 1);
+    return target;
 }
 
 /**
  * 保存：在原表中保存flag
  * metaIndex < 0
  */
-static void saveFlagInMetaTable(lua_State *target, const char *flag, int value, int metaIndex) {
+static inline void saveFlagInMetaTable(lua_State *target, const char *flag, int value, int metaIndex) {
     CHECK_STACK_START(target);
     ///-1:metatable
     lua_pushstring(target, flag);//操作类型保存
@@ -734,7 +920,7 @@ static void saveFlagInMetaTable(lua_State *target, const char *flag, int value, 
 /**
  * 移除：在原表中的flag
  */
-static void removeFlagInMetaTable(lua_State *target, const char *flag, int metaIndex) {
+static inline void removeFlagInMetaTable(lua_State *target, const char *flag, int metaIndex) {
     CHECK_STACK_START(target);
     ///-1:metatable
     lua_pushstring(target, flag);//移除操作类型
@@ -754,31 +940,57 @@ static void removeFlagInMetaTable(lua_State *target, const char *flag, int metaI
 
 /**
  * DB_Insert方法中，对插入的位置元素赋值，并替换元表
+ * in statck: -1:value -2:metatable -3: childtable
+ * return statck: -1:metatable -2: childtable
  */
-static inline void replaceMetaTable(lua_State *L, lua_State *target, const char *key, int insertindex) {
+static inline void replaceMetaTable(lua_State *target, const char *key, int insertindex) {
     CHECK_STACK_START(target);
-    ///-1:value -2:metatable -3: childtable -4:table
-    if (lua_istable(L, -1)) {//更新table，替换为observableTable
+    ///-1:value -2:metatable -3: childtable
+    if (lua_istable(target, -1)) {//更新table，替换为observableTable
         createObservableTable(target, key, -1, 0);
-        ///-1:newTable -2:value -3:metatable -4: childtable -5:table
-        lua_pushinteger(target,
-                        insertindex);//-1:insertindex -2:newTable -3:value -4:metatable -5:childtable -6:table
-        lua_pushvalue(target,
-                      -2);//-1:newTable -2:insertindex -3:newTable -4:value -5:metatable -6:childtable -7:table
+        ///-1:newTable -2:value -3:metatable -4: childtable
+        lua_pushinteger(target, insertindex);
+        //-1:insertindex -2:newTable -3:value -4:metatable -5:childtable
+        lua_pushvalue(target, -2);
+        //-1:newTable -2:insertindex -3:newTable -4:value -5:metatable -6:childtable
         lua_settable(target, -6);
-        lua_pop(target, 2);//-1:metatable -2:childtable -3:table
+        lua_pop(target, 2);//-1:metatable -2:childtable
     } else {
-        lua_pushinteger(target,
-                        insertindex);//-1:insertindex -2:value -3:metatable -4:childtable -5:table
-        lua_pushvalue(target,
-                      -2);//-1:value -2:insertindex -3:value -4:metatable -5:childtable -6:table
+        lua_pushinteger(target, insertindex);
+        //-1:insertindex -2:value -3:metatable -4:childtable
+        lua_pushvalue(target, -2);
+        //-1:value -2:insertindex -3:value -4:metatable -5:childtable
         lua_settable(target, -5);
         lua_pop(target, 1);
     }
     CHECK_STACK_END(target, 0);
 }
 
-// <editor-fold desc="instance 操作">
+/**
+ * 记录key对应的虚拟机 (key_observer)
+ * 记录方式为: key->List(lua_State)
+ */
+static inline int _record_observer(lua_State *L, const char *key) {
+    List *list = map_get(instance->key_observer, key);
+    if (!list) {
+        list = list_new(instance->alloc, 5, 0);
+        if (!list) {
+            luaL_error(L, "cannot watch \"%s\" because no memory");
+            return 0;
+        }
+        map_put(instance->key_observer, (void *) copystr(key), list);
+    } else if (list_index(list, L) < list_size(list)) {
+        /// 已存储
+        return 1;
+    }
+    list_add(list, L);
+    /*记录虚拟机中所有的key值 map[L] = List(keys)*/
+    saveVmKey(L, key);
+    return 0;
+}
+//</editor-fold>
+
+//<editor-fold desc="instance 操作">
 /**
  * 1、从vm_key中查找虚拟机相关缓存
  * 2、遍历缓存key，并从两个表中删除
@@ -786,6 +998,20 @@ static inline void replaceMetaTable(lua_State *L, lua_State *target, const char 
  */
 void DB_Close(lua_State *L) {
     if (!instance) return;
+    lua_getglobal(L, OBSERVER_TABLE_KEY);
+    /// -1: OTK
+    if (!lua_istable(L, -1)) {
+        lua_pop(L, 1);
+    } else {
+        lua_rawgeti(L, -1, 1);
+        Tree *tree = NULL;
+        if (lua_isuserdata(L, -1)) {
+            tree = (Tree *) lua_touserdata(L, -1);
+        }
+        lua_pop(L, 2);
+        if (tree)
+            tree_free(tree);
+    }
     List *list = map_remove(instance->vm_key, L);
     if (!list)
         return;
@@ -854,20 +1080,76 @@ void DB_Bind(lua_State *L, const char *key, int valueIndex) {
 }
 
 /**
- * 监听key对应的value
+ * 针对观察者，在虚拟机全局表中设定一个特殊表来记录(OTK)
+ * 记录方式为: key->{function, type}
+ * 并且记录key对应的虚拟机 (key_observer)
+ * 记录方式为: key->List(lua_State)
+ * 当key中有多级时(包含.)，记录最初级key对应当前虚拟机(key_observer)
+ * 记录方式: key->List(lua_State)
+ *
+ * @param key model名称
+ * @param type 类型，取值范围[0,2] (对应后续回调参数个数) | CALLBACK_PARAMS_TYPE(watchTable回调函数type，返回change_key、type、old、new)
+ * @param functionIndex lua回调函数栈位置
+ * @type 返回参数数量
  */
 void DB_Watch(lua_State *L, const char *key, int type, int functionIndex) {
     _check_instance(L);
-    DB_Watch_Inner(L, key, type, functionIndex, OBSERVER_TABLE_KEY);
-}
+    CHECK_STACK_START(L);
+    /// 记录回调
+    lua_getglobal(L, OBSERVER_TABLE_KEY);
+    if (!lua_istable(L, -1)) {
+        lua_pop(L, 1);
+        lua_createtable(L, 0, 5);
+        lua_pushvalue(L, -1);
+        lua_setglobal(L, OBSERVER_TABLE_KEY);
+    }
+    /*OTK[key] = {callback, type}*/
+    /// stack: OTK
+    lua_createtable(L, 2, 0);
+    lua_pushvalue(L, functionIndex);
+    lua_rawseti(L, -2, 1);
+    lua_pushinteger(L, type);
+    lua_rawseti(L, -2, 2);
+    /// -1: {function, type}, -2: OTK
+    lua_setfield(L, -2, key);
+    /// stack: OTK
 
-/**
- * 监听table 内部
- * function(type, key, new, old)
- */
-void DB_WatchTable(lua_State *L, const char *key, int functionIndex) {
-    _check_instance(L);
-    DB_Watch_Inner(L, key, CALLBACK_PARAMS_TYPE, functionIndex, OBSERVER_TABLE_INNER_KEY);
+    /*记录观察者虚拟机 (instance->key_observer[key]).add(L)*/
+    /// stack: OTK
+    if (_record_observer(L, key)) {
+        /// 已存储
+        lua_pop(L, 1);
+        CHECK_STACK_END(L, 0);
+        return;
+    }
+
+    /*多级key的情况，记录最初级key，并记录key tree*/
+    char *dot = strchr(key, '.');
+    if (dot) {
+        char parent[50] = {0};
+        memcpy(parent, key, dot - key);
+        _record_observer(L, parent);
+
+        /// stack: OTK
+        lua_rawgeti(L, -1, 1);
+        Tree *tree;
+        if (!lua_isuserdata(L, -1)) {
+            lua_pop(L, 1);
+            tree = tree_new(instance->alloc);
+            if (!tree) {
+                luaL_error(L, "watch \'%s\' failed, no memory!", key);
+                return;
+            }
+            lua_pushlightuserdata(L, tree);
+            lua_rawseti(L, -2, 1);
+        } else {
+            tree = (Tree *) lua_touserdata(L, -1);
+            lua_pop(L, 1);
+        }
+        tree_save(tree, key);
+    }
+    lua_pop(L, 1);
+    CHECK_STACK_END(L, 0);
 }
 
 /**
@@ -903,6 +1185,21 @@ void DB_UnWatch(lua_State *L, const char *key) {
             list_free(keyList);
         }
     }
+    /// 移除key tree
+    lua_getglobal(L, OBSERVER_TABLE_KEY);
+    if (!lua_istable(L, -1)) {
+        lua_pop(L, 1);
+    } else {
+        lua_rawgeti(L, -1, 1);
+        Tree *tree = NULL;
+        if (lua_isuserdata(L, -1)) {
+            tree = (Tree *) lua_touserdata(L, -1);
+        }
+        lua_pop(L, 1);
+        if (tree) {
+            tree_remove(tree, key);
+        }
+    }
     CHECK_STACK_END(L, 0);
 }
 
@@ -913,18 +1210,19 @@ void DB_UnWatch(lua_State *L, const char *key) {
 void DB_Update(lua_State *L, const char *key, int valueIndex) {
     _check_instance(L);
     CHECK_STACK_START(L);
-    lua_State *target = DB_findTarget(L, key);
+    char *sec_key = NULL;
+    lua_State *target = DB_findTarget(L, key, &sec_key);
     if (!target) {
         lua_error(L);
         return;
     }
     CheckThread(target);
 #ifdef J_API_INFO
-    int _tot = lua_gettop(target) - 2;
+    int _tot = lua_gettop(target) - 1;
 #endif
-    ///target -1: key -2:table
-    if (lua_isnil(target, -1)) {
-        lua_pop(target, 2);
+    ///target -1:table
+    if (!sec_key) {
+        lua_pop(target, 1);
         CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
         CHECK_STACK_END_O(target, _tot, 0);
@@ -932,37 +1230,62 @@ void DB_Update(lua_State *L, const char *key, int valueIndex) {
         luaL_error(L, "cannot update \"%s\"(first level) binding data!", key);
         return;
     }
+    /// -1: table
+    int last_key_start = 0;
+    int ret = _get_table_by_key(target, sec_key, -1, &last_key_start);
+    /// -1: value, -2: table
+    if (ret != 0) {
+        const char *tn = luaL_typename(target, -1);
+        lua_pop(target, 2);
+        char fir_key[100];
+        memcpy(fir_key, key, (sec_key - key));
+        luaL_error(L, "error update binding data by \"%s\", cause \"%s%s\" is not a table but a %s",
+                key, fir_key, sec_key, tn);
+        return;
+    }
+    lua_pop(target, 1);
+    /// -1: table
 
-    lua_getmetatable(target, -2);//target -1:metatable -2: key -3:table
+    lua_getmetatable(target, -1);
     saveFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, LUA_CHANGE_TYPE_UPDATE, -1);
     lua_pop(target, 1);
-    ///target -1:key -2:table
+    ///target -1:table
     if (L == target) {
         lua_pushvalue(L, valueIndex);
     } else {
         int ret = ipc_copy(L, valueIndex, target);
         if (ret != IPC_OK) {
+            const char *tn = luaL_typename(L, valueIndex);
+            const char *vs = luaL_tolstring(L, valueIndex, NULL);
             lua_pop(target, 2);
             CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
             CHECK_STACK_END_O(target, _tot, 0);
 #endif
             IPC_RESULT(ret);
-            luaL_error(L, "update by key(\"%s\") failed, msg: %s, target(%s): %s",
-                       key, msg, luaL_typename(target, -1), luaL_tolstring(target, -1, NULL));
+            luaL_error(L, "update by key(\"%s\") failed ipc copy, msg: %s, target(%s): %s",
+                       key, msg, tn, vs);
             return;
         }
     }
 
-    //-1:value -2: key -3:table
-    if (lua_istable(L, -1)) {//更新table，替换为observableTable
-        lua_pushvalue(target, -2);//-1:key -2:value -3: key -4:table
-        createObservableTable(target, key, -2, 0);
-        ///-1:newTable -2:key -3:value -4: key -5:table
-        lua_settable(target, -5);//-1:value -2: key -3:table
-        lua_pop(target, 2);
+    //-1:value -2:table
+    int num;
+    if (string_to_int(&sec_key[last_key_start], &num)) {
+        lua_pushinteger(target, num);
     } else {
-        lua_settable(target, -3);
+        lua_pushstring(target, &sec_key[last_key_start]);
+    }
+    //-1: key -2:value -3:table
+    if (lua_istable(L, -2)) {//更新table，替换为observableTable
+        createObservableTable(target, key, -2, 0);
+        ///-1:newTable -2:key -3:value -4: table
+        lua_settable(target, -4);//-1:value -2:table
+        lua_pop(target, 1);
+    } else {
+        lua_pushvalue(target, -2);
+        lua_settable(target, -4);
+        lua_pop(target, 1);
     }
 
     ///-1:table
@@ -983,23 +1306,28 @@ void DB_Update(lua_State *L, const char *key, int valueIndex) {
 void DB_Get(lua_State *L, const char *key) {
     _check_instance(L);
     CHECK_STACK_START(L);
-    lua_State *target = DB_findTarget(L, key);
+    char *sec_key = NULL;
+    lua_State *target = DB_findTarget(L, key, &sec_key);
     if (!target) {
         lua_error(L);
         return;
     }
     CheckThread(target);
 #ifdef J_API_INFO
-    int _tot = lua_gettop(target) - 2;
+    int _tot = lua_gettop(target) - 1;
 #endif
-    /// -1: realKey -2:table
-    if (lua_isnil(target, -1)) {
-        lua_pop(target, 1);
-        lua_pushvalue(target, -1);
-    } else {
-        lua_gettable(target, -2);
+    int ret = _get_table_by_key(target, sec_key, -1, NULL);
+    /// -1: value, -2: table
+    if (ret != 0) {
+        const char *tn = luaL_typename(target, -1);
+        lua_pop(target, 2);
+        char fir_key[100];
+        memcpy(fir_key, key, (sec_key - key));
+        luaL_error(L, "error get binding data by \"%s\", cause \"%s%s\" is not a table but a %s",
+                   key, fir_key, sec_key, tn);
+        return;
     }
-    /// -1: value -2:table
+    /// -1: value, -2: table
     ///table 特殊处理，提取出metatable的__index
     if (lua_istable(target, -1)
         && lua_getmetatable(target, -1)) {
@@ -1012,15 +1340,16 @@ void DB_Get(lua_State *L, const char *key) {
     if (target != L) {//不同虚拟机
         int ret = ipc_copy(target, -1, L);
         if (ret != IPC_OK) {
+            const char *tn = luaL_typename(target, -1);
+            const char *vs = luaL_tolstring(target, -1, NULL);
             lua_pop(target, 2);
             CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
             CHECK_STACK_END_O(target, _tot, 0);
 #endif
             IPC_RESULT(ret);
-            luaL_error(L,
-                    "get by key(\"%s\") failed, msg: %s, target(%s): %s",
-                    key, msg, luaL_typename(target, -1), luaL_tolstring(target, -1, NULL));
+            luaL_error(L, "get by key(\"%s\") failed ipc copy, msg: %s, target(%s): %s",
+                    key, msg, tn, vs);
             return;
         }
         lua_pop(target, 2);
@@ -1029,7 +1358,8 @@ void DB_Get(lua_State *L, const char *key) {
         CHECK_STACK_END_O(target, _tot, 0);
 #endif
     } else {
-        lua_remove(L, -2); // -1: childtable
+        lua_remove(L, -2);
+        // -1: value
         CHECK_STACK_END(L, 1);
     }
 }
@@ -1041,18 +1371,19 @@ void DB_Get(lua_State *L, const char *key) {
 void DB_Insert(lua_State *L, const char *key, int insertindex, int valueIndex) {
     _check_instance(L);
     CHECK_STACK_START(L);
-    lua_State *target = DB_findTarget(L, key);
+    char *sec_key = NULL;
+    lua_State *target = DB_findTarget(L, key, &sec_key);
     if (!target) {
         lua_error(L);
         return;
     }
     CheckThread(target);
 #ifdef J_API_INFO
-    int _tot = lua_gettop(target) - 2;
+    int _tot = lua_gettop(target) - 1;
 #endif
-    /// -1: realKey -2:table
-    if (lua_isnil(target, -1)) {
-        lua_pop(target, 2);
+    ///target -1:table
+    if (!sec_key) {
+        lua_pop(target, 1);
         CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
         CHECK_STACK_END_O(target, _tot, 0);
@@ -1060,36 +1391,58 @@ void DB_Insert(lua_State *L, const char *key, int insertindex, int valueIndex) {
         luaL_error(L, "cannot insert \"%s\"(first level) binding data!", key);
         return;
     }
-    lua_gettable(target, -2);
+    /// -1: table
+    int last_key_start = 0;
+    int ret = _get_table_by_key(target, sec_key, -1, &last_key_start);
+    /// -1: value, -2: table
+    if (ret != 0) {
+        const char *tn = luaL_typename(target, -1);
+        lua_pop(target, 2);
+        char fir_key[100];
+        memcpy(fir_key, key, (sec_key - key));
+        luaL_error(L, "error insert binding data by \"%s\", cause \"%s%s\" is not a table but a %s",
+                   key, fir_key, sec_key, tn);
+        return;
+    }
+    if (!lua_istable(target, -1)) {
+        const char *tn = luaL_typename(target, -1);
+        lua_pop(target, 2);
+        luaL_error(L, "error insert binding data by \"%s\", cause it is not a table but a %s",
+                   key, tn);
+        return;
+    }
+    lua_remove(target, -2);
+    /// -1: valuetable
 
-    /// -1: childtable -2:table
     int curlen = luaL_len(target, -1);
+    /// -1: valuetable
     if (insertindex < 0 || insertindex > curlen) {//末尾插入
         insertindex = curlen + 1;
-        lua_getmetatable(target, -1);//-1:metatable -2: childtable -3:table
+        lua_getmetatable(target, -1);//-1:metatable -2: childtable
         saveFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, LUA_CHANGE_TYPE_INSERT, -1);
         if (L == target) {
             lua_pushvalue(L, valueIndex);
         } else {
-            int ret = ipc_copy(L, valueIndex,
-                               target);//-1:value -2:metatable -3: childtable -4:table
+            int ret = ipc_copy(L, valueIndex, target);
             if (ret != IPC_OK) {
+                const char *tn = luaL_typename(target, valueIndex);
+                const char *vs = luaL_tolstring(target, valueIndex, NULL);
                 lua_pop(target, 3);
                 CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
                 CHECK_STACK_END_O(target, _tot, 0);
 #endif
                 IPC_RESULT(ret);
-                luaL_error(L, "insert by key(\"%s\") failed, msg: %s, target(%s): %s",
-                           key, msg, luaL_typename(target, -1), luaL_tolstring(target, -1, NULL));
+                luaL_error(L, "insert by key(\"%s\") failed ipc copy, msg: %s, target(%s): %s",
+                           key, msg, tn, vs);
                 return;
             }
         }
-
-        replaceMetaTable(L, target, key, insertindex);//替换元表，监听table
-        ///-1:metatable -2:childtable -3:table
+        ///-1:value -2:metatable -3: childtable
+        replaceMetaTable(target, key, insertindex);//替换元表，监听table
+        ///-1:metatable -2:childtable
         removeFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, -1);
-        lua_pop(target, 3);
+        lua_pop(target, 2);
         CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
         CHECK_STACK_END_O(target, _tot, 0);
@@ -1097,48 +1450,51 @@ void DB_Insert(lua_State *L, const char *key, int insertindex, int valueIndex) {
         return;
     }
 
-    lua_getmetatable(target, -1);//-1:metatable -2: childtable -3:table
+    /// -1: valuetable
+    lua_getmetatable(target, -1);//-1:metatable -2: childtable
     saveFlagInMetaTable(target, OBSERVER_TABLE_IGNORE_FLAG, LUA_CHANGE_TYPE_INSERT, -1);
-    lua_pop(target, 1);//-1: childtable -2:table
-
-    /// -1: childtable -2:table
+    lua_pop(target, 1);
+    /// -1: childtable
     for (int i = curlen + 1; i > insertindex; --i) {
-
         //向后移动值
-        lua_pushinteger(target, i);//-1:toIndex -2: childtable -3:table
-        lua_pushinteger(target, i - 1);//-1:fromIndex -2:toIndex -3: childtable -4:table
-        lua_gettable(target, -3);//-1:value -2:toIndex -3: childtable -4:table
+        lua_pushinteger(target, i);//-1:toIndex -2: childtable
+        lua_pushinteger(target, i - 1);//-1:fromIndex -2:toIndex -3: childtable
+        lua_gettable(target, -3);//-1:value -2:toIndex -3: childtable
         lua_settable(target, -3);// -1: childtable -2:table
 
         //遍历到insert位置，赋值
         if (i - 1 == insertindex) {
-            lua_getmetatable(target, -1);//-1:metatable -2: childtable -3:table
+            lua_getmetatable(target, -1);//-1:metatable -2: childtable
             removeFlagInMetaTable(target, OBSERVER_TABLE_IGNORE_FLAG, -1);
             saveFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, LUA_CHANGE_TYPE_INSERT,
                                 -1);
             if (L == target) {
                 lua_pushvalue(L, valueIndex);
             } else {
-                ///-1:metatable -2: childtable -3:table
-                int ret = ipc_copy(L, valueIndex,
-                                   target);//-1:value -2:metatable -3: childtable -4:table
+                ///-1:metatable -2: childtable
+                int ret = ipc_copy(L, valueIndex, target);
                 if (ret != IPC_OK) {
+                    const char *tn = luaL_typename(target, valueIndex);
+                    const char *vs = luaL_tolstring(target, valueIndex, NULL);
                     lua_pop(target, 3);
                     CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
                     CHECK_STACK_END_O(target, _tot, 0);
 #endif
                     IPC_RESULT(ret);
-                    luaL_error(L, "insert by key(\"%s\") failed, msg: %s", key, msg);
+                    luaL_error(L, "insert by key(\"%s\") failed ipc copy, msg: %s, target(%s): %s",
+                               key, msg, tn, vs);
+                    return;
                 }
             }
-            replaceMetaTable(L, target, key, insertindex);//替换元表，监听table
+            ///-1:value -2:metatable -3: childtable
+            replaceMetaTable(target, key, insertindex);//替换元表，监听table
+            ///-1:metatable -2:childtable
             removeFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, -1);
-
-            lua_pop(target, 1);//-1: childtable -2:table
+            lua_pop(target, 1);//-1: childtable
         }
     }
-    lua_pop(target, 2);
+    lua_pop(target, 1);
     CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
     CHECK_STACK_END_O(target, _tot, 0);
@@ -1152,18 +1508,19 @@ void DB_Insert(lua_State *L, const char *key, int insertindex, int valueIndex) {
 void DB_Remove(lua_State *L, const char *key, int removeIndex) {
     _check_instance(L);
     CHECK_STACK_START(L);
-    lua_State *target = DB_findTarget(L, key);
+    char *sec_key = NULL;
+    lua_State *target = DB_findTarget(L, key, &sec_key);
     if (!target) {
         lua_error(L);
         return;
     }
     CheckThread(target);
 #ifdef J_API_INFO
-    int _tot = lua_gettop(target) - 2;
+    int _tot = lua_gettop(target) - 1;
 #endif
-    /// -1: realKey -2:table
-    if (lua_isnil(target, -1)) {
-        lua_pop(target, 2);
+    ///target -1:table
+    if (!sec_key) {
+        lua_pop(target, 1);
         CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
         CHECK_STACK_END_O(target, _tot, 0);
@@ -1171,54 +1528,68 @@ void DB_Remove(lua_State *L, const char *key, int removeIndex) {
         luaL_error(L, "cannot remove \"%s\"(first level) binding data!", key);
         return;
     }
-    lua_gettable(target, -2);
-
-    lua_getmetatable(target, -1);//-1:metatable -2: childtable -3:table
-    saveFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, LUA_CHANGE_TYPE_REMOVE, -1);
-
-    ///-1:metatable -2: childtable -3:table
-    int curlen = luaL_len(target, -2);
-
-    lua_pushinteger(target, removeIndex);//-1:removeIndex -2:metatable -3: childtable -4:table
-    lua_pushnil(target);//-1:nil -2:removeIndex -3:metatable -4: childtable -5:table
-    lua_settable(target, -4);// -1:metatable -2: childtable -3:table
-
-    removeFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, -1);
-    lua_pop(target, 1);//-1: childtable -2:table
-
-    if (removeIndex == curlen) {//末尾移除
+    /// -1: table
+    int last_key_start = 0;
+    int ret = _get_table_by_key(target, sec_key, -1, &last_key_start);
+    /// -1: value, -2: table
+    if (ret != 0) {
+        const char *tn = luaL_typename(target, -1);
         lua_pop(target, 2);
+        char fir_key[100];
+        memcpy(fir_key, key, (sec_key - key));
+        luaL_error(L, "error remove binding data by \"%s\", cause \"%s%s\" is not a table but a %s",
+                   key, fir_key, sec_key, tn);
+        return;
+    }
+    if (!lua_istable(target, -1)) {
+        const char *tn = luaL_typename(target, -1);
+        lua_pop(target, 2);
+        luaL_error(L, "error remove binding data by \"%s\", cause it is not a table but a %s",
+                   key, tn);
+        return;
+    }
+    lua_remove(target, -2);
+    /// -1: valuetable
+
+    lua_getmetatable(target, -1);//-1:metatable -2: valuetable
+    saveFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, LUA_CHANGE_TYPE_REMOVE, -1);
+    ///-1:metatable -2: childtable
+    int curlen = luaL_len(target, -2);
+    lua_pushinteger(target, removeIndex);//-1:removeIndex -2:metatable -3: childtable
+    lua_pushnil(target);//-1:nil -2:removeIndex -3:metatable -4: childtable
+    lua_settable(target, -4);// -1:metatable -2: childtable
+    removeFlagInMetaTable(target, OBSERVER_TABLE_CHANGE_TYPE_FLAG, -1);
+    lua_pop(target, 1);
+    //-1: childtable
+    if (removeIndex == curlen) {//末尾移除
+        lua_pop(target, 1);
         CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
         CHECK_STACK_END_O(target, _tot, 0);
 #endif
         return;
     }
-
-    lua_getmetatable(target, -1);//-1:metatable -2: childtable -3:table
+    //-1: childtable
+    lua_getmetatable(target, -1);//-1:metatable -2: childtable
     saveFlagInMetaTable(target, OBSERVER_TABLE_IGNORE_FLAG, LUA_CHANGE_TYPE_INSERT, -1);
-
-    lua_pop(target, 1);//-1: childtable -2:table
-
-    /// -1: childtable -2:table
+    lua_pop(target, 1);
+    /// -1: childtable
     for (int i = removeIndex; i <= curlen; ++i) {
         if (i + 1 <= curlen) {//非最后
-            lua_pushinteger(target, i);     //-1:toIndex -2:childtable -3:table
-            lua_pushinteger(target, i + 1); //-1:fromIndex -2:toIndex -3:childtable -4:table
-            lua_gettable(target, -3);       //-1:value -2:toIndex -3:childtable -4:table
-
-            lua_settable(target, -3);       // -1: childtable -2:table
-
+            lua_pushinteger(target, i);     //-1:toIndex -2:childtable
+            lua_pushinteger(target, i + 1); //-1:fromIndex -2:toIndex -3:childtable
+            lua_gettable(target, -3);       //-1:value -2:toIndex -3:childtable
+            lua_settable(target, -3);       // -1: childtable
         } else {//最后一个
-            lua_pushinteger(target, i); //-1:removeIndex -2:childtable -3:table
-            lua_pushnil(target);        //-1:nil -2:removeIndex -3:childtable -4:table
-            lua_settable(target, -3);
+            lua_pushinteger(target, i); //-1:removeIndex -2:childtable
+            lua_pushnil(target);        //-1:nil -2:removeIndex -3:childtable
+            lua_settable(target, -3);   // -1: childtable
         }
     }
-
-    lua_getmetatable(target, -1);//-1:metatable -2: childtable -3:table
+    // -1: childtable
+    lua_getmetatable(target, -1);//-1:metatable -2: childtable
     removeFlagInMetaTable(target, OBSERVER_TABLE_IGNORE_FLAG, -1);
-    lua_pop(target, 3);
+    lua_pop(target, 2);
     CHECK_STACK_END(L, 0);
 #ifdef J_API_INFO
     CHECK_STACK_END_O(target, _tot, 0);
@@ -1232,24 +1603,28 @@ void DB_Remove(lua_State *L, const char *key, int removeIndex) {
 void DB_Len(lua_State *L, const char *key) {
     _check_instance(L);
     CHECK_STACK_START(L);
-    lua_State *target = DB_findTarget(L, key);
+    char *sec_key = NULL;
+    lua_State *target = DB_findTarget(L, key, &sec_key);
     if (!target) {
         lua_error(L);
         return;
     }
     CheckThread(target);
 #ifdef J_API_INFO
-    int _tot = lua_gettop(target) - 2;
+    int _tot = lua_gettop(target) - 1;
 #endif
-    /// -1: realKey -2:table
-    if (lua_isnil(target, -1)) {
-        lua_pop(target, 1);
-        lua_pushvalue(target, -1);
-    } else {
-        lua_gettable(target, -2);
+    int ret = _get_table_by_key(target, sec_key, -1, NULL);
+    /// -1: value, -2: table
+    if (ret != 0) {
+        const char *tn = luaL_typename(target, -1);
+        lua_pop(target, 2);
+        char fir_key[100];
+        memcpy(fir_key, key, (sec_key - key));
+        luaL_error(L, "error get binding data len by \"%s\", cause \"%s%s\" is not a table but a %s",
+                   key, fir_key, sec_key, tn);
+        return;
     }
-
-    /// -1: value -2:table
+    /// -1: value, -2: table
     ///table 特殊处理，提取出metatable的__index
     if (lua_istable(target, -1)
         && lua_getmetatable(target, -1)) {
@@ -1258,7 +1633,6 @@ void DB_Len(lua_State *L, const char *key) {
         lua_remove(target, -2);//remove metatalbe
         lua_remove(target, -2);//remove value
     }
-    
     /// -1: childtable -2:table
     int len = luaL_len(target, -1);
 
@@ -1275,9 +1649,9 @@ void DB_Len(lua_State *L, const char *key) {
         CHECK_STACK_END(L, 1);
     }
 }
-// </editor-fold>
+//</editor-fold>
 
-// <editor-fold desc="instance free 操作">
+//<editor-fold desc="instance free 操作">
 /**
  * 释放map中key值内存
  */
@@ -1327,7 +1701,7 @@ void DataBindFree() {
         instance = NULL;
     }
 }
-// </editor-fold>
+//</editor-fold>
 
 int DataBindInit(D_malloc m) {
     if (instance)

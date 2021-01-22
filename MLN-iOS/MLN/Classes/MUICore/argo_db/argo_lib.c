@@ -85,22 +85,6 @@ static int argo_watch(lua_State *L) {
 }
 
 /**
- * params: string, type, function(new, old)
- * 使用方法:
- *  Argo.watchTable("key", function(type, key, new, old) end)
- */
-static int argo_watchTable(lua_State *L) {
-    CHECK_STACK_START(L);
-    const char *key = luaL_checkstring(L, 1);
-    luaL_checktype(L, 2, LUA_TFUNCTION);
-    DB_WatchTable(L, key, 2);
-    lua_remove(L, 2);
-    lua_remove(L, 1);
-    CHECK_STACK_END(L, -2);
-    return 0;
-}
-
-/**
  * params: string
  * 使用方法:
  *  Argo.unwatch("key")
@@ -200,7 +184,6 @@ static int argo_len(lua_State *L) {
 static const luaL_Reg libs[] = {
         {"bind",       argo_bind},
         {"watch",      argo_watch},
-        {"watchTable", argo_watchTable},
         {"unwatch",    argo_unwatch},
         {"update",     argo_update},
         {"get",        argo_get},
