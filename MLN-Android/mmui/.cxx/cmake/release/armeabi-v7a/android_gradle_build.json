@@ -1,0 +1,293 @@
+{
+  "stringTable": {
+    "0": "E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/release/armeabi-v7a",
+    "1": "--target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dlibanimator_EXPORTS -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/include -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/include/lua_include -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/anim/Source -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/anim/Source/Animations -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/anim/Source/Engine -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/anim/Source/Platform -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/anim/Source/Math -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -frtti -fexceptions -Oz -DNDEBUG -fPIC",
+    "2": "--target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmmuibridge_EXPORTS -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/include -IE:/projects/MLN/MLN-Android/mmui/src/main/jni/include/lua_include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG -fPIC"
+  },
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\release\\armeabi-v7a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\release\\armeabi-v7a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "libanimator-Release-armeabi-v7a": {
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\release\\armeabi-v7a\" libanimator",
+      "buildType": "release",
+      "toolchain": "1492688768",
+      "abi": "armeabi-v7a",
+      "artifactName": "libanimator",
+      "files": [
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Animation.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Animations\\ValueAnimation.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Animations\\ObjectAnimation.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Animations\\SpringAnimation.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Animations\\CustomAnimation.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Animations\\MultiAnimation.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Engine\\AnimatorEngine.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Engine\\AnimationTracer.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Engine\\AnimatorExtras.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Math\\MathUtil.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Math\\Vector.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Platform\\RunLoop.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Platform\\Android\\RunLoopAndroid.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\Source\\Platform\\Android\\AnimatorJNI.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\libs\\armeabi-v7a\\liblibanimator.so",
+      "runtimeFiles": []
+    },
+    "mmuibridge-Release-armeabi-v7a": {
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\release\\armeabi-v7a\" mmuibridge",
+      "buildType": "release",
+      "toolchain": "1492688768",
+      "abi": "armeabi-v7a",
+      "artifactName": "mmuibridge",
+      "files": [
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmdatabinding.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\interactive_behavior_callback.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\interactive_behavior.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmui_vm_auto_fill.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmview.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmcolor.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmedittext.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmlabel.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmstylestring.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmnodegroup.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmspacer.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmhstack.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmvstack.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmwindow.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmimageview.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmimagebutton.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmsafearea.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmbaseanim.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmanimset.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmanimator.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmrecycler_callback.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmrecyclerview.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmadapter_callback.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmbaserecycleradapter.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmneedheightadapter.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmlistadapter.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmcollectionadapter.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmbaserecyclerlayout.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmcollectionlayout.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmwaterfalllayout.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmscrollview.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmpagelink.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\mmtocuh_callback.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\libs\\armeabi-v7a\\libmmuibridge.so",
+      "runtimeFiles": [
+        "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\libs\\armeabi-v7a\\libluajapi.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "1492688768": {
+      "cCompilerExecutable": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

@@ -1,0 +1,11 @@
+# ninja log v5
+11	151	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/mmbit.c.o	8bc8d55d3114051
+16	162	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/mmbridge.c.o	f3e352dae914f693
+3	180	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/mmoslib.c.o	157a1d585372df7e
+0	181	633101929	bitmap/CMakeFiles/lblur.dir/bitmap_util.c.o	db49ed65b2890e30
+8	198	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/jse.c.o	c8a62b0adc2c2ecc
+5	225	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/mmcanvas.c.o	59f38290b0710991
+18	255	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/mmmap.c.o	8e14d91c8373d32b
+181	283	633101929	E:/projects/MLN/MLN-Android/mlnservics/src/main/libs/arm64-v8a/liblblur.so	2cd66821e40e9971
+13	297	633101929	mln/CMakeFiles/mlnbridge.dir/bridge/mmarray.c.o	52b568262f9027ae
+297	376	633101929	E:/projects/MLN/MLN-Android/mlnservics/src/main/libs/arm64-v8a/libmlnbridge.so	6d55b4fd05145960

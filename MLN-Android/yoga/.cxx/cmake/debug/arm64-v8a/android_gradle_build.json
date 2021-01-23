@@ -1,0 +1,136 @@
+{
+  "stringTable": {
+    "0": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/debug/arm64-v8a",
+    "1": "--target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dyoga_EXPORTS -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/. -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -frtti -fexceptions -O0 -fno-limit-debug-info -s -fPIC -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11",
+    "2": "--target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/. -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -frtti -fexceptions -O0 -fno-limit-debug-info -s -s -fPIC -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11"
+  },
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\debug\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\debug\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "yoga-Debug-arm64-v8a": {
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\debug\\arm64-v8a\" yoga",
+      "buildType": "debug",
+      "toolchain": "838519986",
+      "abi": "arm64-v8a",
+      "artifactName": "yoga",
+      "files": [
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\YGJNIVanilla.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\YogaJniException.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\common.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\corefunctions.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\yogajni.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\libs\\arm64-v8a\\libyoga.so",
+      "runtimeFiles": []
+    },
+    "yogacore-Debug-arm64-v8a": {
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\debug\\arm64-v8a\" yogacore",
+      "buildType": "debug",
+      "toolchain": "838519986",
+      "abi": "arm64-v8a",
+      "artifactName": "yogacore",
+      "files": [
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\Utils.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGConfig.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGEnums.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGLayout.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGNode.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGNodePrint.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGStyle.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGValue.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\Yoga.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\event\\event.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\internal\\experiments.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\log.cpp",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\debug\\arm64-v8a\\yoga\\libyogacore.a"
+    }
+  },
+  "toolchains": {
+    "838519986": {
+      "cppCompilerExecutable": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

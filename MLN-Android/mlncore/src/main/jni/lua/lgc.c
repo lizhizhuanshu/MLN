@@ -431,13 +431,37 @@ static void traversestrongtable (global_State *g, Table *h) {
 }
 
 
+
+
+
+#ifdef ALONE_STRCHE
+  static char* strchr_wrap(const char* cStr,int val)
+  {
+    int index = 0;
+    int nowChar;
+    while (nowChar = cStr[index])
+    {
+      if (nowChar == val)
+      {
+        return cStr+index;
+      }
+      index++;
+    }
+    return val?NULL:cStr+index;
+  }
+#else
+  #define strchr_wrap(s,c) strchr(s,c)
+#endif
+
+
+
 static lu_mem traversetable (global_State *g, Table *h) {
   const char *weakkey, *weakvalue;
   const TValue *mode = gfasttm(g, h->metatable, TM_MODE);
   markobject(g, h->metatable);
   if (mode && ttisstring(mode) &&  /* is there a weak mode? */
-      ((weakkey = strchr(svalue(mode), 'k')),
-       (weakvalue = strchr(svalue(mode), 'v')),
+      ((weakkey = strchr_wrap(svalue(mode), 'k')),
+       (weakvalue = strchr_wrap(svalue(mode), 'v')),
        (weakkey || weakvalue))) {  /* is really weak? */
     black2gray(obj2gco(h));  /* keep table gray */
     if (!weakkey)  /* strong keys? */

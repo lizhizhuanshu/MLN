@@ -37,6 +37,11 @@ android {
         jni.srcDirs = []
     }
 
+    packagingOptions{
+        pickFirst 'lib/arm64-v8a/libluajapi.so'
+        pickFirst 'lib/armeabi-v7a/libluajapi.so'
+    }
+
 }
 
 dependencies {

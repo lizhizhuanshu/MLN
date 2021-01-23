@@ -1,0 +1,37 @@
+{
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "luajapi-Release-armeabi-v7a": {
+      "artifactName": "luajapi",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\" luajapi",
+      "abi": "armeabi-v7a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\libs\\armeabi-v7a\\libluajapi.so",
+      "runtimeFiles": []
+    },
+    "lua-Release-armeabi-v7a": {
+      "artifactName": "lua",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\" lua",
+      "abi": "armeabi-v7a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\\lua\\liblua.a",
+      "runtimeFiles": []
+    },
+    "mlsocket-Release-armeabi-v7a": {
+      "artifactName": "mlsocket",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\" mlsocket",
+      "abi": "armeabi-v7a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\release\\armeabi-v7a\\luasocket\\libmlsocket.a",
+      "runtimeFiles": []
+    }
+  }
+}

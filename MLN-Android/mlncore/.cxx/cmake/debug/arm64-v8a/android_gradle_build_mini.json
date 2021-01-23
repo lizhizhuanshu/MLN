@@ -1,0 +1,37 @@
+{
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "mlsocket-Debug-arm64-v8a": {
+      "artifactName": "mlsocket",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\" mlsocket",
+      "abi": "arm64-v8a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\\luasocket\\libmlsocket.a",
+      "runtimeFiles": []
+    },
+    "luajapi-Debug-arm64-v8a": {
+      "artifactName": "luajapi",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\" luajapi",
+      "abi": "arm64-v8a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\libs\\arm64-v8a\\libluajapi.so",
+      "runtimeFiles": []
+    },
+    "lua-Debug-arm64-v8a": {
+      "artifactName": "lua",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\" lua",
+      "abi": "arm64-v8a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlncore\\.cxx\\cmake\\debug\\arm64-v8a\\lua\\liblua.a",
+      "runtimeFiles": []
+    }
+  }
+}

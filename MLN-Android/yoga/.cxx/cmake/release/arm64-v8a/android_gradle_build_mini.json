@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\release\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\release\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "yoga-Release-arm64-v8a": {
+      "artifactName": "yoga",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\release\\arm64-v8a\" yoga",
+      "abi": "arm64-v8a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\libs\\arm64-v8a\\libyoga.so",
+      "runtimeFiles": []
+    },
+    "yogacore-Release-arm64-v8a": {
+      "artifactName": "yogacore",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\release\\arm64-v8a\" yogacore",
+      "abi": "arm64-v8a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\yoga\\.cxx\\cmake\\release\\arm64-v8a\\yoga\\libyogacore.a",
+      "runtimeFiles": []
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# ninja log v5
+30	286	633101930	yoga/CMakeFiles/yogacore.dir/YGNodePrint.cpp.o	72b85a80d9c86366
+14	391	633101930	yoga/CMakeFiles/yogacore.dir/YGEnums.cpp.o	5d2cc7a993408258
+9	396	633101930	CMakeFiles/yoga.dir/jni/yogajni.cpp.o	83e20ede30bf17b3
+33	438	633101930	yoga/CMakeFiles/yogacore.dir/YGValue.cpp.o	6056f2560812097d
+1	521	633101930	CMakeFiles/yoga.dir/jni/common.cpp.o	6e031eeed4abc3ef
+21	702	633101930	yoga/CMakeFiles/yogacore.dir/Utils.cpp.o	8e5ba151ffa05daa
+19	782	633101930	yoga/CMakeFiles/yogacore.dir/YGConfig.cpp.o	eb36003e1b1e9333
+28	802	633101930	yoga/CMakeFiles/yogacore.dir/YGStyle.cpp.o	fcd5a2e6eac83672
+16	823	633101930	yoga/CMakeFiles/yogacore.dir/YGLayout.cpp.o	279794a0cbb5c40
+12	838	633101930	CMakeFiles/yoga.dir/jni/corefunctions.cpp.o	3915a53d47f5707f
+4	866	633101930	CMakeFiles/yoga.dir/jni/YogaJniException.cpp.o	952a248a3be3015f
+336	1124	633101931	yoga/CMakeFiles/yogacore.dir/log.cpp.o	913809b792e7d1cc
+391	1162	633101931	yoga/CMakeFiles/yogacore.dir/event/event.cpp.o	4c4a9a935c160a87
+396	1162	633101931	yoga/CMakeFiles/yogacore.dir/internal/experiments.cpp.o	e1961eb04c0ab1e6
+24	1235	633101931	yoga/CMakeFiles/yogacore.dir/YGNode.cpp.o	cc7721a4ce1b1a09
+7	1271	633101931	CMakeFiles/yoga.dir/jni/YGJNIVanilla.cpp.o	4d66a9df67208c11
+26	1412	633101931	yoga/CMakeFiles/yogacore.dir/Yoga.cpp.o	1572f4d8098bf9e1
+1412	1534	633101931	yoga/libyogacore.a	49fc5c2731a7ed0
+1534	1643	633101931	E:/projects/MLN/MLN-Android/yoga/src/main/libs/arm64-v8a/libyoga.so	ac3eff00ac6cf4d3

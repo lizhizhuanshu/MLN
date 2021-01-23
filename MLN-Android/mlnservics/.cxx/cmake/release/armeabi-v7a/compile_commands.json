@@ -1,0 +1,49 @@
+[
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dlblur_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o bitmap\\CMakeFiles\\lblur.dir\\bitmap_util.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\bitmap\\bitmap_util.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\bitmap\\bitmap_util.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\mmoslib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmoslib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmoslib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\mmbit.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmbit.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmbit.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\mmcanvas.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmcanvas.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmcanvas.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\jse.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\jse.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\jse.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\mmbridge.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmbridge.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmbridge.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\mmarray.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmarray.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmarray.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/armeabi-v7a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -pie -fPIE -Oz -DNDEBUG  -fPIC   -o mln\\CMakeFiles\\mlnbridge.dir\\bridge\\mmmap.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmmap.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmmap.c"
+}
+]

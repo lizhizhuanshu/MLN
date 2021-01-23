@@ -1,0 +1,433 @@
+[
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lapi.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lapi.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lapi.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lauxlib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lauxlib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lauxlib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lbaselib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lbaselib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lbaselib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lbitlib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lbitlib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lbitlib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lcode.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lcode.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lcode.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lcorolib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lcorolib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lcorolib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lctype.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lctype.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lctype.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ldblib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldblib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldblib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ldebug.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldebug.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldebug.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ldo.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldo.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldo.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ldump.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldump.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ldump.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lfunc.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lfunc.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lfunc.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lgc.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lgc.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lgc.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\linit.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\linit.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\linit.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\liolib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\liolib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\liolib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\llex.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\llex.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\llex.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lmathlib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lmathlib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lmathlib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lmem.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lmem.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lmem.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\loadlib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\loadlib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\loadlib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lobject.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lobject.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lobject.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lopcodes.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lopcodes.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lopcodes.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\loslib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\loslib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\loslib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lparser.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lparser.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lparser.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lstate.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lstate.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lstate.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lstring.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lstring.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lstring.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lstrlib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lstrlib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lstrlib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ltable.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ltable.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ltable.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ltablib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ltablib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ltablib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\ltm.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ltm.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\ltm.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lundump.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lundump.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lundump.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lvm.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lvm.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lvm.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DALONE_STRCHE -DANDROID -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o lua\\CMakeFiles\\lua.dir\\lzio.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lzio.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\lua\\lzio.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\luasocket.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\luasocket.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\luasocket.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\buffer.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\buffer.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\buffer.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\auxiliar.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\auxiliar.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\auxiliar.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\options.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\options.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\options.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\timeout.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\timeout.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\timeout.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\io.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\io.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\io.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\usocket.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\usocket.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\usocket.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\compat.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\compat.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\compat.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\except.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\except.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\except.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\inet.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\inet.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\inet.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\mime.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\mime.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\mime.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\select.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\select.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\select.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\serial.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\serial.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\serial.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\tcp.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\tcp.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\tcp.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -DJAVA_ENV -DLUA_COMPAT_5_1 -DLUA_COMPAT_5_2 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o luasocket\\CMakeFiles\\mlsocket.dir\\udp.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\udp.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\luasocket\\udp.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\m_utf.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\m_utf.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\m_utf.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\stack.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\stack.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\stack.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\list.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\list.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\list.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\map.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\map.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\map.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\statistics.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\statistics.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\statistics.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\statistics_require.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\statistics_require.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\statistics_require.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\m_mem.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\m_mem.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\m_mem.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\saes.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\saes.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\saes.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\utils.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\utils.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\utils.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\jlog.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jlog.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jlog.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\debug_info.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\debug_info.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\debug_info.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\jinfo.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jinfo.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jinfo.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\assets_reader.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\assets_reader.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\assets_reader.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\cache.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\cache.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\cache.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\jfunction.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jfunction.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jfunction.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\jbridge.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jbridge.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jbridge.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\jtable.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jtable.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\jtable.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\juserdata.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\juserdata.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\juserdata.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\compiler.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\compiler.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\compiler.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\message_looper.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\message_looper.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\message_looper.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\isolate.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\isolate.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\isolate.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\argo\\LuaRPC.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\argo\\LuaRPC.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\argo\\LuaRPC.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\argo\\databindengine.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\argo\\databindengine.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\argo\\databindengine.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\argo\\argo_lib.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\argo\\argo_lib.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\argo\\argo_lib.c"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/mlncore/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_CACHE_UD -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dluajapi_EXPORTS -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/lua -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/luasocket -IE:/projects/MLN/MLN-Android/mlncore/src/main/jni/japi  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG  -fPIC   -o japi\\CMakeFiles\\luajapi.dir\\luajapi.c.o   -c E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\luajapi.c",
+  "file": "E:\\projects\\MLN\\MLN-Android\\mlncore\\src\\main\\jni\\japi\\luajapi.c"
+}
+]

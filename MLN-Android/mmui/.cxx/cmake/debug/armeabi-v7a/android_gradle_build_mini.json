@@ -1,0 +1,31 @@
+{
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\anim\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\jni\\bridge\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\debug\\armeabi-v7a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\debug\\armeabi-v7a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "libanimator-Debug-armeabi-v7a": {
+      "artifactName": "libanimator",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\debug\\armeabi-v7a\" libanimator",
+      "abi": "armeabi-v7a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\libs\\armeabi-v7a\\liblibanimator.so",
+      "runtimeFiles": []
+    },
+    "mmuibridge-Debug-armeabi-v7a": {
+      "artifactName": "mmuibridge",
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mmui\\.cxx\\cmake\\debug\\armeabi-v7a\" mmuibridge",
+      "abi": "armeabi-v7a",
+      "output": "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\libs\\armeabi-v7a\\libmmuibridge.so",
+      "runtimeFiles": [
+        "E:\\projects\\MLN\\MLN-Android\\mmui\\src\\main\\libs\\armeabi-v7a\\libluajapi.so"
+      ]
+    }
+  }
+}

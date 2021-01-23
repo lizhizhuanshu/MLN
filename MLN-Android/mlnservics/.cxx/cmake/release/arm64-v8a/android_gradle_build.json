@@ -1,0 +1,95 @@
+{
+  "stringTable": {
+    "0": "E:/projects/MLN/MLN-Android/mlnservics/.cxx/cmake/release/arm64-v8a",
+    "1": "--target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dlblur_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG -fPIC",
+    "2": "--target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DJAVA_ENV -DJ_API_INFO -DLUA_COMPAT_5_1 -DLUA_COMPAT_ALL -DLUA_DL_DLOPEN -DLUA_USE_C89 -DLUA_USE_LINUX -DP_ANDROID -DSTATISTIC_PERFORMANCE -Dmlnbridge_EXPORTS -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln/lua_include -IE:/projects/MLN/MLN-Android/mlnservics/src/main/jni/mln -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -pie -fPIE -O2 -DNDEBUG -fPIC"
+  },
+  "buildFiles": [
+    "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\CMakeLists.txt",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\android.toolchain.cmake",
+    "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\build\\cmake\\platforms.cmake",
+    "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\bitmap\\CMakeLists.txt",
+    "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlnservics\\.cxx\\cmake\\release\\arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\projects\\MLN\\MLN-Android\\mlnservics\\.cxx\\cmake\\release\\arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "mlnbridge-Release-arm64-v8a": {
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlnservics\\.cxx\\cmake\\release\\arm64-v8a\" mlnbridge",
+      "buildType": "release",
+      "toolchain": "745678414",
+      "abi": "arm64-v8a",
+      "artifactName": "mlnbridge",
+      "files": [
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmoslib.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmbit.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmcanvas.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\jse.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmbridge.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmarray.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        },
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\mln\\bridge\\mmmap.c",
+          "flagsOrdinal": 2,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\libs\\arm64-v8a\\libmlnbridge.so",
+      "runtimeFiles": [
+        "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\libs\\arm64-v8a\\libluajapi.so"
+      ]
+    },
+    "lblur-Release-arm64-v8a": {
+      "buildCommand": "D:\\Programs\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\projects\\MLN\\MLN-Android\\mlnservics\\.cxx\\cmake\\release\\arm64-v8a\" lblur",
+      "buildType": "release",
+      "toolchain": "745678414",
+      "abi": "arm64-v8a",
+      "artifactName": "lblur",
+      "files": [
+        {
+          "src": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\jni\\bitmap\\bitmap_util.c",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\projects\\MLN\\MLN-Android\\mlnservics\\src\\main\\libs\\arm64-v8a\\liblblur.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "745678414": {
+      "cCompilerExecutable": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

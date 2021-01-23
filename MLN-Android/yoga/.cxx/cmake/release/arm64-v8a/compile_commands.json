@@ -1,0 +1,103 @@
+[
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dyoga_EXPORTS -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -o CMakeFiles\\yoga.dir\\jni\\YGJNIVanilla.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\YGJNIVanilla.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\YGJNIVanilla.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dyoga_EXPORTS -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -o CMakeFiles\\yoga.dir\\jni\\YogaJniException.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\YogaJniException.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\YogaJniException.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dyoga_EXPORTS -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -o CMakeFiles\\yoga.dir\\jni\\common.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\common.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\common.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dyoga_EXPORTS -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -o CMakeFiles\\yoga.dir\\jni\\corefunctions.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\corefunctions.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\corefunctions.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dyoga_EXPORTS -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -o CMakeFiles\\yoga.dir\\jni\\yogajni.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\yogajni.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\jni\\yogajni.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\Utils.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\Utils.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\Utils.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGConfig.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGConfig.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGConfig.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGEnums.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGEnums.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGEnums.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGLayout.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGLayout.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGLayout.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGNode.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGNode.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGNode.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGNodePrint.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGNodePrint.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGNodePrint.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGStyle.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGStyle.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGStyle.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\YGValue.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGValue.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\YGValue.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\Yoga.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\Yoga.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\Yoga.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\event\\event.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\event\\event.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\event\\event.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\internal\\experiments.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\internal\\experiments.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\internal\\experiments.cpp"
+},
+
+{
+  "directory": "E:/projects/MLN/MLN-Android/yoga/.cxx/cmake/release/arm64-v8a",
+  "command": "D:\\Programs\\Android\\Sdk\\ndk\\21.1.6352462\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Programs/Android/Sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/windows-x86_64/sysroot   -IE:/projects/MLN/MLN-Android/yoga/src/main/jni/yoga/.  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -O2 -DNDEBUG  -s -s -fPIC   -fno-omit-frame-pointer -fexceptions -fvisibility=hidden -ffunction-sections -fdata-sections -Wall -std=c++11 -std=gnu++11 -o yoga\\CMakeFiles\\yogacore.dir\\log.cpp.o -c E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\log.cpp",
+  "file": "E:\\projects\\MLN\\MLN-Android\\yoga\\src\\main\\jni\\yoga\\log.cpp"
+}
+]

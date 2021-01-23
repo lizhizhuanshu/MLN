@@ -1,0 +1,8 @@
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/anim/CMakeFiles/libanimator.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/anim/CMakeFiles/edit_cache.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/anim/CMakeFiles/rebuild_cache.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/bridge/CMakeFiles/edit_cache.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/bridge/CMakeFiles/mmuibridge.dir
+E:/projects/MLN/MLN-Android/mmui/.cxx/cmake/debug/arm64-v8a/bridge/CMakeFiles/rebuild_cache.dir
